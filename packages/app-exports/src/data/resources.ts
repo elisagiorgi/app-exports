@@ -1,29 +1,30 @@
-import {
-  AllowedResourceType,
-  AllowedParentResource,
-  ResourceWithParent
-} from 'App'
+import { AllowedResourceType } from 'App'
 
 type VisibleInUI = boolean
 
 /**
- * To control if a resource should not be visibile int the app UI
+ * To control if a resource should not be visible int the app UI
  */
 const resources: Record<AllowedResourceType, VisibleInUI> = {
   addresses: true,
   bundles: true,
-  skus: true,
-  prices: true,
   coupons: true,
-  sku_lists: true,
-  sku_options: true,
   customer_subscriptions: true,
   customers: true,
   gift_cards: true,
+  line_items: true,
+  orders: true,
+  payment_methods: true,
+  prices: true,
+  shipments: true,
+  shipping_categories: true,
+  shipping_methods: true,
+  sku_lists: true,
+  sku_options: true,
+  skus: true,
   stock_items: true,
   tax_categories: true,
-  shipping_categories: true,
-  orders: true
+  transactions: true
 }
 
 /**
@@ -43,23 +44,16 @@ const resourceNiceName: Record<AllowedResourceType, string> = {
   stock_items: 'Stock items',
   tax_categories: 'Tax categories',
   shipping_categories: 'Shipping categories',
-  orders: 'Orders'
+  orders: 'Orders',
+  line_items: 'Line items',
+  payment_methods: 'Payment methods',
+  shipments: 'Shipments',
+  shipping_methods: 'Shipping methods',
+  transactions: 'Transactions'
 }
 
 /**
- * Parent Resources dictionary (we want singular names)
- */
-const parentResourceNiceName: Record<AllowedParentResource, string> = {
-  markets: 'Market',
-  promotion_rules: 'Promotion rule',
-  price_lists: 'Price list',
-  stock_locations: 'Stock location',
-  tax_calculators: 'Tax calculator',
-  sku_lists: 'Sku list'
-}
-
-/**
- * Typesafe arry of AllowedResourceType
+ * Typesafe array of AllowedResourceType
  */
 const allResources = Object.keys(resources) as AllowedResourceType[]
 
@@ -86,46 +80,5 @@ export function showResourceNiceName(resource?: string): string {
   if (resource == null) {
     return '-'
   }
-  return (
-    resourceNiceName[resource as AllowedResourceType] ??
-    parentResourceNiceName[resource as AllowedParentResource] ??
-    resource
-  )
-}
-
-/**
- * To control if a resource has a parent resource to be selected
- */
-const resourcesWithParent: Record<ResourceWithParent, AllowedParentResource> = {
-  bundles: 'markets',
-  coupons: 'promotion_rules',
-  gift_cards: 'markets',
-  orders: 'markets',
-  prices: 'price_lists',
-  sku_options: 'markets',
-  stock_items: 'stock_locations',
-  tax_categories: 'tax_calculators'
-}
-
-/**
- * Check if a resource accepts a parent resource or not
- * @param resource - The resource type
- * @returns a boolean value and when true, param will is typed as `ResourceWithParent`
- */
-function hasParentResource(resource: string): resource is ResourceWithParent {
-  return resource in resourcesWithParent
-}
-
-/**
- * Get the parent resource from a given resource
- * @param resource - The resource type
- * @returns a valid parent resource  or false in case the resource does not have any parent
- */
-export function getParentResourceIfNeeded(
-  resource: string
-): AllowedParentResource | false {
-  if (resource == null || !hasParentResource(resource)) {
-    return false
-  }
-  return resourcesWithParent[resource]
+  return resourceNiceName[resource as AllowedResourceType] ?? resource
 }

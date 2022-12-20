@@ -27,7 +27,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@commercelayer/core-app-elements": "https://github.com/commercelayer/core-app-elements.git#7f187791445e868dd3c5fb669a649953be6ea425",
+    "@commercelayer/core-app-elements": "link:~/cl/commercelayer-core-app-elements/packages/core-app-elements/",
     "@commercelayer/eslint-config-ts-react": "^0.1.4",
     "@commercelayer/sdk": "^4.16.0",
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",

@@ -10,7 +10,7 @@ importers:
 
   packages/app-exports:
     specifiers:
-      '@commercelayer/core-app-elements': https://github.com/commercelayer/core-app-elements.git#92d0d81382ce862f3eceb9b6569541204720b07e
+      '@commercelayer/core-app-elements': link:~/cl/commercelayer-core-app-elements/packages/core-app-elements/
       '@commercelayer/eslint-config-ts-react': ^0.1.4
       '@commercelayer/sdk': ^4.16.0
       '@esbuild-plugins/node-globals-polyfill': ^0.1.1
@@ -51,7 +51,7 @@ importers:
       wouter: 2.8.0-alpha.2
       zod: 3.17.3
     dependencies:
-      '@commercelayer/core-app-elements': github.com/commercelayer/core-app-elements/92d0d81382ce862f3eceb9b6569541204720b07e
+      '@commercelayer/core-app-elements': link:../../../commercelayer-core-app-elements/packages/core-app-elements
       '@commercelayer/eslint-config-ts-react': 0.1.4_fhn6rh263pedvglov76hy2lvoe
       '@commercelayer/sdk': 4.20.0
       '@esbuild-plugins/node-globals-polyfill': 0.1.1_esbuild@0.15.16
@@ -7924,13 +7924,4 @@ packages:
 
   /zod/3.17.3:
     resolution: {integrity: sha512-4oKP5zvG6GGbMlqBkI5FESOAweldEhSOZ6LI6cG+JzUT7ofj1ZOC0PJudpQOpT1iqOFpYYtX5Pw0+o403y4bcg==}
-    dev: false
-
-  github.com/commercelayer/core-app-elements/92d0d81382ce862f3eceb9b6569541204720b07e:
-    resolution: {commit: 92d0d81382ce862f3eceb9b6569541204720b07e, repo: git+ssh://git@github.com/commercelayer/core-app-elements.git, type: git}
-    name: core-app-elements
-    version: 0.0.0
-    engines: {node: '>=18', pnpm: '>=7'}
-    prepare: true
-    requiresBuild: true
     dev: false

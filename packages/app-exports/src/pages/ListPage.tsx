@@ -13,6 +13,7 @@ import {
   EmptyState,
   useTokenProvider
 } from '@commercelayer/core-app-elements'
+import { DescriptionLine } from '#components/List/ItemDescriptionLine'
 
 function ListPage(): JSX.Element {
   const { sdkClient, dashboardUrl } = useTokenProvider()
@@ -85,18 +86,20 @@ function ListPage(): JSX.Element {
               {list.map((job) => {
                 const canDelete =
                   job.status === 'pending' || job.status === 'in_progress'
+                const statusUi = getUiStatus(job.status)
                 return (
                   <ListItemTask
                     key={job.id}
-                    status={getUiStatus(job.status)}
+                    status={statusUi}
                     onClick={() => {
                       setLocation(appRoutes.details.makePath(job.id))
                     }}
+                    progressPercentage={statusUi === 'progress' ? 0 : undefined}
                     title={showResourceNiceName(job.resource_type)}
                     onCancelRequest={
                       canDelete ? () => deleteExport(job.id) : undefined
                     }
-                    description='todo...'
+                    description={<DescriptionLine job={job} />}
                   />
                 )
               })}

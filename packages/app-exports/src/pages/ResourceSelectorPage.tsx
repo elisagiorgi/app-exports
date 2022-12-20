@@ -19,7 +19,7 @@ export function ResourceSelectorPage(): JSX.Element {
         setLocation(appRoutes.list.makePath())
       }}
     >
-      <Spacer bottom='14' data-test-id='lorem'>
+      <Spacer bottom='14'>
         <List>
           {availableResources.sort().map((resource) => (
             <Link key={resource} href={appRoutes.newExport.makePath(resource)}>

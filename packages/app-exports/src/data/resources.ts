@@ -20,6 +20,7 @@ const resources: Record<AllowedResourceType, VisibleInUI> = {
   shipping_categories: true,
   shipping_methods: true,
   sku_lists: true,
+  sku_list_items: true,
   sku_options: true,
   skus: true,
   stock_items: true,
@@ -37,6 +38,7 @@ const resourceNiceName: Record<AllowedResourceType, string> = {
   prices: 'Prices',
   coupons: 'Coupons',
   sku_lists: 'SKU lists',
+  sku_list_items: 'SKU list items',
   sku_options: 'SKU options',
   customer_subscriptions: 'Customer subscriptions',
   customers: 'Customers',
@@ -67,8 +69,15 @@ export const availableResources = allResources.filter((r) => resources[r])
  * Simple helper to understand if a resource is available
  * @returns `true` when the resource is available, `false` otherwise
  */
-export const isAvailableResource = (resourceType: string): boolean =>
-  availableResources.includes(resourceType as AllowedResourceType)
+export const isAvailableResource = (
+  resourceType: any
+): resourceType is AllowedResourceType => {
+  try {
+    return availableResources.includes(resourceType)
+  } catch {
+    return false
+  }
+}
 
 /**
  * @param resource - The resource type

@@ -54,7 +54,7 @@ importers:
       '@commercelayer/core-app-elements': link:../../../commercelayer-core-app-elements/packages/core-app-elements
       '@commercelayer/eslint-config-ts-react': 0.1.4_fhn6rh263pedvglov76hy2lvoe
       '@commercelayer/sdk': 4.20.0
-      '@esbuild-plugins/node-globals-polyfill': 0.1.1_esbuild@0.15.16
+      '@esbuild-plugins/node-globals-polyfill': 0.1.1
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
       '@types/lodash-es': 4.17.6
@@ -78,7 +78,7 @@ importers:
       postcss: 8.4.19
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-select: 5.7.0_bkycudvrb3j3gvocoupj7qjewi
+      react-select: 5.7.0_ib3m5ricvtkl2cll7qpr2f6lvq
       rollup-plugin-node-polyfills: 0.2.1
       ts-invariant: 0.10.3
       typescript: 4.7.4
@@ -273,6 +273,15 @@ packages:
       '@babel/types': 7.20.5
     dev: false
 
+  /@babel/plugin-syntax-jsx/7.18.6:
+    resolution: {integrity: sha512-6mmljtAedFGTWu2p/8WIORGwy+61PLgOMPOdazc7YoJ9ZCWUyFy3A6CpPkRKLKD1ToAesxX8KGEViAiLo9N+7Q==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/helper-plugin-utils': 7.20.2
+    dev: false
+
   /@babel/plugin-syntax-jsx/7.18.6_@babel+core@7.20.5:
     resolution: {integrity: sha512-6mmljtAedFGTWu2p/8WIORGwy+61PLgOMPOdazc7YoJ9ZCWUyFy3A6CpPkRKLKD1ToAesxX8KGEViAiLo9N+7Q==}
     engines: {node: '>=6.9.0'}
@@ -434,14 +443,13 @@ packages:
       postcss-selector-parser: 6.0.11
     dev: true
 
-  /@emotion/babel-plugin/11.10.5_@babel+core@7.20.5:
+  /@emotion/babel-plugin/11.10.5:
     resolution: {integrity: sha512-xE7/hyLHJac7D2Ve9dKroBBZqBT7WuPQmWcq7HSGb84sUuP4mlOWoB8dvVfD9yk5DHkU1m6RW7xSoDtnQHNQeA==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
-      '@babel/core': 7.20.5
       '@babel/helper-module-imports': 7.18.6
-      '@babel/plugin-syntax-jsx': 7.18.6_@babel+core@7.20.5
+      '@babel/plugin-syntax-jsx': 7.18.6
       '@babel/runtime': 7.20.6
       '@emotion/hash': 0.9.0
       '@emotion/memoize': 0.8.0
@@ -472,7 +480,7 @@ packages:
     resolution: {integrity: sha512-G/YwXTkv7Den9mXDO7AhLWkE3q+I92B+VqAE+dYG4NGPaHZGvt3G8Q0p9vmE+sq7rTGphUbAvmQ9YpbfMQGGlA==}
     dev: false
 
-  /@emotion/react/11.10.5_xl5my4wapvq2ctl7qwehtbgorq:
+  /@emotion/react/11.10.5_kzbn2opkn2327fwg5yzwzya5o4:
     resolution: {integrity: sha512-TZs6235tCJ/7iF6/rvTaOH4oxQg2gMAcdHemjwLKIjKz4rRuYe1HJ2TQJKnAcRAfOUDdU8XoDadCe1rl72iv8A==}
     peerDependencies:
       '@babel/core': ^7.0.0
@@ -484,9 +492,8 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/core': 7.20.5
       '@babel/runtime': 7.20.6
-      '@emotion/babel-plugin': 11.10.5_@babel+core@7.20.5
+      '@emotion/babel-plugin': 11.10.5
       '@emotion/cache': 11.10.5
       '@emotion/serialize': 1.1.1
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.0_react@18.2.0
@@ -531,12 +538,10 @@ packages:
     resolution: {integrity: sha512-AHPmaAx+RYfZz0eYu6Gviiagpmiyw98ySSlQvCUhVGDRtDFe4DBS0x1bSjdF3gqUDYOczB+yYvBTtEylYSdRhg==}
     dev: false
 
-  /@esbuild-plugins/node-globals-polyfill/0.1.1_esbuild@0.15.16:
+  /@esbuild-plugins/node-globals-polyfill/0.1.1:
     resolution: {integrity: sha512-MR0oAA+mlnJWrt1RQVQ+4VYuRJW/P2YmRTv1AsplObyvuBMnPHiizUF95HHYiSsMGLhyGtWufaq2XQg6+iurBg==}
     peerDependencies:
       esbuild: '*'
-    dependencies:
-      esbuild: 0.15.16
     dev: false
 
   /@esbuild/android-arm/0.15.16:
@@ -6482,7 +6487,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react-select/5.7.0_bkycudvrb3j3gvocoupj7qjewi:
+  /react-select/5.7.0_ib3m5ricvtkl2cll7qpr2f6lvq:
     resolution: {integrity: sha512-lJGiMxCa3cqnUr2Jjtg9YHsaytiZqeNOKeibv6WF5zbK/fPegZ1hg3y/9P1RZVLhqBTs0PfqQLKuAACednYGhQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -6490,7 +6495,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       '@emotion/cache': 11.10.5
-      '@emotion/react': 11.10.5_xl5my4wapvq2ctl7qwehtbgorq
+      '@emotion/react': 11.10.5_kzbn2opkn2327fwg5yzwzya5o4
       '@floating-ui/dom': 1.0.7
       '@types/react-transition-group': 4.4.5
       memoize-one: 6.0.0

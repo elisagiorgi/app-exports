@@ -8,9 +8,9 @@ import { useRoute } from 'wouter'
 const DetailsPage = (): JSX.Element | null => {
   const { sdkClient } = useTokenProvider()
   const [_match, params] = useRoute(appRoutes.details.path)
-  const importId = params == null ? null : params.importId
+  const exportId = params == null ? null : params.exportId
 
-  if (importId == null) {
+  if (exportId == null) {
     return null
   }
 

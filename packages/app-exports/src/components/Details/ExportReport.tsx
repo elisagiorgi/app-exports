@@ -12,6 +12,9 @@ export function ExportReport(): JSX.Element | null {
     return null
   }
 
+  const linkLabel =
+    data.format === 'csv' ? 'Download CSV file' : 'Download JSON file'
+
   return (
     <Report
       items={[
@@ -19,7 +22,7 @@ export function ExportReport(): JSX.Element | null {
           label: 'Records exported',
           count: <ExportCount type='records_count' />,
           linkUrl: getSourceFileUrl(data),
-          linkLabel: 'Download CSV file'
+          linkLabel
         }
       ]}
     />

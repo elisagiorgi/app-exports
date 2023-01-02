@@ -9,7 +9,8 @@ import {
   Label,
   Spacer,
   Button,
-  Text
+  Text,
+  InputToggleListBox
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute } from 'wouter'
 import { RelationshipSelector } from '#components/RelationshipSelector'
@@ -24,7 +25,9 @@ const NewExportPage = (): JSX.Element | null => {
 
   const [apiError, setApiError] = useState<ApiError[] | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(false)
+
   const [dryData, setDryData] = useState(false)
+  const [format, setFormat] = useState('json')
 
   const resourceType = params?.resourceType
   if (!isAvailableResource(resourceType)) {
@@ -43,6 +46,7 @@ const NewExportPage = (): JSX.Element | null => {
       await sdkClient.exports.create({
         resource_type: resourceType,
         dry_data: dryData,
+        format,
         filters: []
       })
       setLocation(appRoutes.list.makePath())
@@ -84,6 +88,19 @@ const NewExportPage = (): JSX.Element | null => {
             label='Dry data to make importable'
             isChecked={dryData}
             onToggle={setDryData}
+          />
+          <InputToggleListBox
+            id='format'
+            label='Export format'
+            value={format}
+            onSelect={setFormat}
+            options={[
+              { label: 'JSON', value: 'json' },
+              {
+                label: 'CSV',
+                value: 'csv'
+              }
+            ]}
           />
         </div>
       </Spacer>

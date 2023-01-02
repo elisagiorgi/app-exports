@@ -33,6 +33,9 @@ export function ExportDetails(): JSX.Element | null {
       <ListDetailsItem label='Dry Data' hasGutter>
         {data.dry_data === true ? 'true' : 'false'}
       </ListDetailsItem>
+      <ListDetailsItem label='Format' hasGutter>
+        {data.format}
+      </ListDetailsItem>
     </ListDetails>
   )
 }

@@ -8,18 +8,21 @@ import {
   InputToggleBox,
   Label,
   Spacer,
-  Button
+  Button,
+  Text
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute } from 'wouter'
 import { RelationshipSelector } from '#components/RelationshipSelector'
 import { useState } from 'react'
+import { CommerceLayerStatic } from '@commercelayer/sdk'
+import { ApiError } from 'App'
 
 const NewExportPage = (): JSX.Element | null => {
   const { sdkClient } = useTokenProvider()
   const [_match, params] = useRoute(appRoutes.newExport.path)
   const [_location, setLocation] = useLocation()
 
-  const [isTouched, setIsTouched] = useState(false)
+  const [apiError, setApiError] = useState<ApiError[] | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(false)
   const [dryData, setDryData] = useState(false)
 
@@ -34,6 +37,7 @@ const NewExportPage = (): JSX.Element | null => {
   }
 
   const createExportTask = async (): Promise<void> => {
+    setApiError(undefined)
     setIsLoading(true)
     try {
       await sdkClient.exports.create({
@@ -42,7 +46,17 @@ const NewExportPage = (): JSX.Element | null => {
         filters: []
       })
       setLocation(appRoutes.list.makePath())
-    } catch {
+    } catch (err: any) {
+      if (CommerceLayerStatic.isApiError(err) && Array.isArray(err.errors)) {
+        console.log(err.errors)
+        setApiError(err.errors)
+      } else {
+        setApiError([
+          {
+            title: 'Could not create the export task'
+          }
+        ])
+      }
       setIsLoading(false)
     }
   }
@@ -78,8 +92,7 @@ const NewExportPage = (): JSX.Element | null => {
         <Button
           variant='primary'
           onClick={() => {
-            setIsTouched(true)
-            // todo: validate
+            // TODO: validate (?)
             void createExportTask()
           }}
           disabled={isLoading}
@@ -88,6 +101,15 @@ const NewExportPage = (): JSX.Element | null => {
             ? 'Importing...'
             : `Exporting ${showResourceNiceName(resourceType).toLowerCase()}`}
         </Button>
+        {apiError != null && apiError.length > 0 ? (
+          <div>
+            {apiError.map((error, idx) => (
+              <Text variant='danger' key={idx}>
+                {error.title}
+              </Text>
+            ))}
+          </div>
+        ) : null}
       </Spacer>
     </PageLayout>
   )

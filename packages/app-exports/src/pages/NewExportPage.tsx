@@ -14,10 +14,11 @@ import {
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute } from 'wouter'
 import { RelationshipSelector } from '#components/RelationshipSelector'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CommerceLayerStatic } from '@commercelayer/sdk'
 import { ApiError } from 'App'
 import { Filters } from '#components/Filters'
+import { AllFilters } from 'Filters'
 
 const NewExportPage = (): JSX.Element | null => {
   const { sdkClient } = useTokenProvider()
@@ -27,6 +28,7 @@ const NewExportPage = (): JSX.Element | null => {
   const [apiError, setApiError] = useState<ApiError[] | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(false)
 
+  const [filters, setFilters] = useState<AllFilters>()
   const [dryData, setDryData] = useState(false)
   const [format, setFormat] = useState('json')
 
@@ -48,7 +50,7 @@ const NewExportPage = (): JSX.Element | null => {
         resource_type: resourceType,
         dry_data: dryData,
         format,
-        filters: []
+        filters
       })
       setLocation(appRoutes.list.makePath())
     } catch (err: any) {
@@ -66,6 +68,17 @@ const NewExportPage = (): JSX.Element | null => {
     }
   }
 
+  const hasApiError = apiError != null && apiError.length > 0
+
+  useEffect(
+    function clearApiError() {
+      if (hasApiError) {
+        setApiError(undefined)
+      }
+    },
+    [filters, dryData, format]
+  )
+
   return (
     <PageLayout
       title={`Export ${showResourceNiceName(resourceType).toLowerCase()}`}
@@ -73,7 +86,7 @@ const NewExportPage = (): JSX.Element | null => {
         setLocation(appRoutes.selectResource.makePath())
       }}
     >
-      <Filters resourceType={resourceType} />
+      <Filters resourceType={resourceType} onChange={setFilters} />
 
       <Spacer bottom='14'>
         <RelationshipSelector resourceType={resourceType} />
@@ -119,7 +132,7 @@ const NewExportPage = (): JSX.Element | null => {
             ? 'Importing...'
             : `Exporting ${showResourceNiceName(resourceType).toLowerCase()}`}
         </Button>
-        {apiError != null && apiError.length > 0 ? (
+        {hasApiError ? (
           <div>
             {apiError.map((error, idx) => (
               <Text variant='danger' key={idx}>

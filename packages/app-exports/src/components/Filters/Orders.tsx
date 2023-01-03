@@ -6,39 +6,34 @@ import {
   flatSelectValues,
   useTokenProvider
 } from '@commercelayer/core-app-elements'
-import { useState } from 'react'
+import { OrderField, OrdersFilters, FilterValue } from 'Filters'
+import { useEffect, useState } from 'react'
 
-type FilterKey =
-  | 'market_in'
-  | 'status_in'
-  | 'created_at_gteq'
-  | 'created_at_lteq'
-type FilterValue = string | number | Array<string | number> | null
-type Filters = Record<FilterKey, FilterValue>
-
-const initialFiltersValue: Filters = {
-  market_in: null,
-  status_in: null,
-  created_at_gteq: null,
-  created_at_lteq: null
+interface Props {
+  onChange: (filters: OrdersFilters) => void
 }
 
-export function Orders(): JSX.Element | null {
+export function Orders({ onChange }: Props): JSX.Element | null {
   const { sdkClient } = useTokenProvider()
-  const [filters, setFilter] = useState<Filters>(initialFiltersValue)
+  const [filters, setFilter] = useState<OrdersFilters>({})
 
   if (sdkClient == null) {
     return null
   }
 
-  const updateFilters = (key: FilterKey, value: FilterValue): void => {
+  const updateFilters = (key: OrderField, value: FilterValue): void => {
     setFilter((state) => ({
       ...state,
       [key]: value
     }))
   }
 
-  console.log('filters', filters)
+  useEffect(
+    function dispatchFilterChange() {
+      onChange(filters)
+    },
+    [filters]
+  )
 
   return (
     <div>
@@ -90,20 +85,22 @@ export function Orders(): JSX.Element | null {
         <InputDateRange
           label='Date range'
           fromDate={parseFilterToDate(filters.created_at_gteq)}
+          autoPlaceholder
           onFromChange={(date) => {
-            updateFilters('created_at_gteq', date.toISOString())
+            updateFilters('created_at_gteq', date?.toISOString() ?? null)
           }}
           toDate={parseFilterToDate(filters.created_at_lteq)}
           onToChange={(date) => {
-            updateFilters('created_at_lteq', date.toISOString())
+            updateFilters('created_at_lteq', date?.toISOString() ?? null)
           }}
+          isClearable
         />
       </Spacer>
     </div>
   )
 }
 
-function parseFilterToDate(filterValue: FilterValue): Date | undefined {
+function parseFilterToDate(filterValue?: FilterValue): Date | undefined {
   return filterValue != null && typeof filterValue === 'string'
     ? new Date(filterValue)
     : undefined

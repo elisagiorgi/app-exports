@@ -17,6 +17,7 @@ import { RelationshipSelector } from '#components/RelationshipSelector'
 import { useState } from 'react'
 import { CommerceLayerStatic } from '@commercelayer/sdk'
 import { ApiError } from 'App'
+import { Filters } from '#components/Filters'
 
 const NewExportPage = (): JSX.Element | null => {
   const { sdkClient } = useTokenProvider()
@@ -72,7 +73,7 @@ const NewExportPage = (): JSX.Element | null => {
         setLocation(appRoutes.selectResource.makePath())
       }}
     >
-      <div>Filters...</div>
+      <Filters resourceType={resourceType} />
 
       <Spacer bottom='14'>
         <RelationshipSelector resourceType={resourceType} />

@@ -17,12 +17,13 @@ import {
 import { useLocation, useRoute } from 'wouter'
 import { RelationshipSelector } from '#components/RelationshipSelector'
 import { useEffect, useState } from 'react'
-import { CommerceLayerStatic } from '@commercelayer/sdk'
 import { ApiError } from 'App'
 import { Filters } from '#components/Filters'
 import { AllFilters } from 'Filters'
 import { resourcesWithFilters } from '#components/Filters/index'
 import { InputCode } from '#components/Filters/InputCode'
+import { validateRecordsCount } from '#utils/validateRecordsCount'
+import { parseApiError } from '#utils/apiErrors'
 
 const NewExportPage = (): JSX.Element | null => {
   const { sdkClient } = useTokenProvider()
@@ -51,6 +52,11 @@ const NewExportPage = (): JSX.Element | null => {
     setIsLoading(true)
 
     try {
+      await validateRecordsCount({
+        sdkClient,
+        resourceType,
+        filters
+      })
       await sdkClient.exports.create({
         resource_type: resourceType,
         dry_data: dryData,
@@ -58,17 +64,8 @@ const NewExportPage = (): JSX.Element | null => {
         filters
       })
       setLocation(appRoutes.list.makePath())
-    } catch (err: any) {
-      if (CommerceLayerStatic.isApiError(err) && Array.isArray(err.errors)) {
-        console.log(err.errors)
-        setApiError(err.errors)
-      } else {
-        setApiError([
-          {
-            title: 'Could not create the export task'
-          }
-        ])
-      }
+    } catch (error) {
+      setApiError(parseApiError(error))
       setIsLoading(false)
     }
   }

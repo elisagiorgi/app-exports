@@ -36,7 +36,7 @@ importers:
       vite: ^4.0.4
       vitest: ^0.26.3
       wouter: ^2.9.0
-      zod: 3.17.3
+      zod: 3.20.2
     dependencies:
       '@commercelayer/core-app-elements': 0.0.1-beta.4_l2iwz5gth2wupm5oruopphiyiq
       '@commercelayer/eslint-config-ts-react': 0.1.4_b7en3qybxvi7kqey6pvu247liq
@@ -59,7 +59,7 @@ importers:
       vite: 4.0.4_@types+node@18.0.1
       vitest: 0.26.3_jsdom@20.0.3
       wouter: 2.9.0_react@18.2.0
-      zod: 3.17.3
+      zod: 3.20.2
     devDependencies:
       dotenv: 16.0.3
       prettier: 2.8.0
@@ -8388,6 +8388,6 @@ packages:
       commander: 9.4.1
     dev: false
 
-  /zod/3.17.3:
-    resolution: {integrity: sha512-4oKP5zvG6GGbMlqBkI5FESOAweldEhSOZ6LI6cG+JzUT7ofj1ZOC0PJudpQOpT1iqOFpYYtX5Pw0+o403y4bcg==}
+  /zod/3.20.2:
+    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
     dev: false

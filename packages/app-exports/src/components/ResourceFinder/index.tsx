@@ -9,7 +9,7 @@ import { InputSelect, Label } from '@commercelayer/core-app-elements'
 import {
   PossibleSelectValue,
   SelectValue
-} from '@commercelayer/core-app-elements/dist/types/ui/forms/InputSelect'
+} from '@commercelayer/core-app-elements/dist/ui/forms/InputSelect'
 
 interface Props {
   /**

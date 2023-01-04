@@ -1,4 +1,4 @@
-import { SelectValue } from '@commercelayer/core-app-elements/dist/types/ui/forms/InputSelect'
+import { SelectValue } from '@commercelayer/core-app-elements/dist/ui/forms/InputSelect'
 import { CommerceLayerClient } from '@commercelayer/sdk'
 import { ListResponse, Resource } from '@commercelayer/sdk/lib/cjs/resource'
 

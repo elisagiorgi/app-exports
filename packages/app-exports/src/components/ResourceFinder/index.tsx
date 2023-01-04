@@ -62,14 +62,13 @@ export function ResourceFinder({
 
   return (
     <div>
-      <Label gap htmlFor='resource-finder'>
-        {label}
-      </Label>
+      <Label gap>{label}</Label>
       <InputSelect
         initialValues={initialValues}
         placeholder={placeholder}
         isLoading={isLoading}
         isMulti={isMulti}
+        isClearable
         onSelect={onSelect}
         loadAsyncValues={async (hint) => {
           return await fetchResourcesByHint(sdkClient, hint, resourceType)

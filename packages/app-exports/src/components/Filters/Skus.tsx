@@ -6,22 +6,22 @@ import {
   flatSelectValues,
   useTokenProvider
 } from '@commercelayer/core-app-elements'
-import { OrdersField, OrdersFilters, FilterValue } from 'Filters'
+import { FilterValue, SkusFilters, SkusField } from 'Filters'
 import { useEffect, useState } from 'react'
 
 interface Props {
-  onChange: (filters: OrdersFilters) => void
+  onChange: (filters: SkusFilters) => void
 }
 
-export function Orders({ onChange }: Props): JSX.Element | null {
+export function Skus({ onChange }: Props): JSX.Element | null {
   const { sdkClient } = useTokenProvider()
-  const [filters, setFilter] = useState<OrdersFilters>({})
+  const [filters, setFilter] = useState<SkusFilters>({})
 
   if (sdkClient == null) {
     return null
   }
 
-  const updateFilters = (key: OrdersField, value: FilterValue): void => {
+  const updateFilters = (key: SkusField, value: FilterValue): void => {
     setFilter((state) => ({
       ...state,
       [key]: value
@@ -50,33 +50,33 @@ export function Orders({ onChange }: Props): JSX.Element | null {
       </Spacer>
 
       <Spacer bottom='6'>
-        <InputSelect
-          label='Status'
-          initialValues={[
-            {
-              value: 'draft',
-              label: 'Draft'
-            },
-            {
-              value: 'placed',
-              label: 'Placed'
-            },
-            {
-              value: 'pending',
-              label: 'Pending'
-            },
-            {
-              value: 'approved',
-              label: 'Approved'
-            },
-            {
-              value: 'cancelled',
-              label: 'Cancelled'
-            }
-          ]}
+        <ResourceFinder
+          label='SKU codes'
+          resourceType='skus'
           isMulti
           onSelect={(values) => {
-            updateFilters('status_in', flatSelectValues(values))
+            updateFilters('id_in', flatSelectValues(values))
+          }}
+          sdkClient={sdkClient}
+        />
+      </Spacer>
+
+      <Spacer bottom='6'>
+        <InputSelect
+          label='Product Type'
+          initialValues={[
+            {
+              value: 'true',
+              label: 'Shippable SKU'
+            },
+            {
+              value: 'false',
+              label: 'Non-shippable SKU'
+            }
+          ]}
+          isClearable
+          onSelect={(values) => {
+            updateFilters('do_not_ship_false', flatSelectValues(values))
           }}
         />
       </Spacer>

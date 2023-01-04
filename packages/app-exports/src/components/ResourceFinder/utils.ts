@@ -2,7 +2,7 @@ import { SelectValue } from '@commercelayer/core-app-elements/dist/ui/forms/Inpu
 import { CommerceLayerClient } from '@commercelayer/sdk'
 import { ListResponse, Resource } from '@commercelayer/sdk/lib/cjs/resource'
 
-export type SearchableResource = 'markets'
+export type SearchableResource = 'markets' | 'skus' | 'price_lists'
 
 export const fetchResourcesByHint = async (
   sdkClient: CommerceLayerClient,

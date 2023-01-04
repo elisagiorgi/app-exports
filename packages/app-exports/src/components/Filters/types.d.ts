@@ -4,14 +4,26 @@ declare module 'Filters' {
   type Filters<FiltrableField extends string> = Partial<
     Record<FiltrableField, FilterValue>
   >
+  type AllFilters = FilterOrders | FilterOrders
 
-  type OrderField =
+  // orders
+  type OrdersFilters = Filters<OrdersField>
+  type OrdersField =
     | 'market_in'
     | 'status_in'
     | 'created_at_gteq'
     | 'created_at_lteq'
 
-  type OrdersFilters = Filters<OrderField>
+  // skus
+  type SkusFilters = Filters<SkusField>
+  type SkusField =
+    | 'market_in'
+    | 'id_in'
+    | 'created_at_gteq'
+    | 'created_at_lteq'
+    | 'do_not_ship_false' // is shippable
 
-  type AllFilters = FilterOrders | FilterOrders
+  // prices
+  type PricesFilters = Filters<PricesField>
+  type PricesField = 'sku_id_in' | 'price_list_id_eq'
 }

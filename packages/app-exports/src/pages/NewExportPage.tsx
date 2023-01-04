@@ -10,7 +10,9 @@ import {
   Spacer,
   Button,
   Text,
-  InputToggleListBox
+  InputToggleListBox,
+  Tabs,
+  Tab
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute } from 'wouter'
 import { RelationshipSelector } from '#components/RelationshipSelector'
@@ -19,6 +21,8 @@ import { CommerceLayerStatic } from '@commercelayer/sdk'
 import { ApiError } from 'App'
 import { Filters } from '#components/Filters'
 import { AllFilters } from 'Filters'
+import { resourcesWithFilters } from '#components/Filters/index'
+import { InputCode } from '#components/Filters/InputCode'
 
 const NewExportPage = (): JSX.Element | null => {
   const { sdkClient } = useTokenProvider()
@@ -45,6 +49,7 @@ const NewExportPage = (): JSX.Element | null => {
   const createExportTask = async (): Promise<void> => {
     setApiError(undefined)
     setIsLoading(true)
+
     try {
       await sdkClient.exports.create({
         resource_type: resourceType,
@@ -86,7 +91,19 @@ const NewExportPage = (): JSX.Element | null => {
         setLocation(appRoutes.selectResource.makePath())
       }}
     >
-      <Filters resourceType={resourceType} onChange={setFilters} />
+      <Tabs keepAlive>
+        {resourcesWithFilters.includes(resourceType) ? (
+          <Tab name='Filters'>
+            <Filters resourceType={resourceType} onChange={setFilters} />
+          </Tab>
+        ) : null}
+        <Tab name='Custom rules'>
+          <InputCode
+            onDataReady={setFilters}
+            onDataResetRequest={() => setFilters(undefined)}
+          />
+        </Tab>
+      </Tabs>
 
       <Spacer bottom='14'>
         <RelationshipSelector resourceType={resourceType} />

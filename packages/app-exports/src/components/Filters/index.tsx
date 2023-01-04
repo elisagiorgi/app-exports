@@ -7,6 +7,8 @@ interface Props {
   onChange: (filters: AllFilters) => void
 }
 
+export const resourcesWithFilters = ['orders', 'skus', 'prices']
+
 export function Filters({ resourceType, onChange }: Props): JSX.Element | null {
   if (resourceType === 'orders') {
     return <Orders onChange={onChange} />

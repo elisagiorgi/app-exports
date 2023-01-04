@@ -1,4 +1,8 @@
-import { ListDetailsItem, ListDetails } from '@commercelayer/core-app-elements'
+import {
+  ListDetailsItem,
+  ListDetails,
+  BlockCode
+} from '@commercelayer/core-app-elements'
 import { useExportDetailsContext } from './Provider'
 import { StatusBadge } from './StatusBadge'
 
@@ -24,11 +28,7 @@ export function ExportDetails(): JSX.Element | null {
         </ListDetailsItem>
       ) : null}
       <ListDetailsItem label='Filters' hasGutter>
-        {data.filters != null && Object.keys(data.filters).length > 0 ? (
-          <>{JSON.stringify(data.filters)}</>
-        ) : (
-          'none'
-        )}
+        <BlockCode json={data.filters} />
       </ListDetailsItem>
       <ListDetailsItem label='Dry Data' hasGutter>
         {data.dry_data === true ? 'true' : 'false'}

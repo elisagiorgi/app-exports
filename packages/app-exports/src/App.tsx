@@ -30,7 +30,7 @@ function App(): JSX.Element {
               console.error('invalid callback received: ', reason)
             }}
             loadingElement={<PageSkeleton />}
-            devMode={import.meta.env.DEV}
+            devMode
           >
             <Router base={basePath}>
               <Switch>

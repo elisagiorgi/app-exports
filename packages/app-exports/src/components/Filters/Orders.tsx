@@ -81,21 +81,19 @@ export function Orders({ onChange }: Props): JSX.Element | null {
         />
       </Spacer>
 
-      <Spacer bottom='6'>
-        <InputDateRange
-          label='Date range'
-          fromDate={parseFilterToDate(filters.created_at_gteq)}
-          autoPlaceholder
-          onFromChange={(date) => {
-            updateFilters('created_at_gteq', date?.toISOString() ?? null)
-          }}
-          toDate={parseFilterToDate(filters.created_at_lteq)}
-          onToChange={(date) => {
-            updateFilters('created_at_lteq', date?.toISOString() ?? null)
-          }}
-          isClearable
-        />
-      </Spacer>
+      <InputDateRange
+        label='Date range'
+        fromDate={parseFilterToDate(filters.created_at_gteq)}
+        autoPlaceholder
+        onFromChange={(date) => {
+          updateFilters('created_at_gteq', date?.toISOString() ?? null)
+        }}
+        toDate={parseFilterToDate(filters.created_at_lteq)}
+        onToChange={(date) => {
+          updateFilters('created_at_lteq', date?.toISOString() ?? null)
+        }}
+        isClearable
+      />
     </div>
   )
 }

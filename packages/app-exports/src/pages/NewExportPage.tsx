@@ -88,19 +88,21 @@ const NewExportPage = (): JSX.Element | null => {
         setLocation(appRoutes.selectResource.makePath())
       }}
     >
-      <Tabs keepAlive>
-        {resourcesWithFilters.includes(resourceType) ? (
-          <Tab name='Filters'>
-            <Filters resourceType={resourceType} onChange={setFilters} />
+      <Spacer bottom='6'>
+        <Tabs keepAlive>
+          {resourcesWithFilters.includes(resourceType) ? (
+            <Tab name='Filters'>
+              <Filters resourceType={resourceType} onChange={setFilters} />
+            </Tab>
+          ) : null}
+          <Tab name='Custom rules'>
+            <InputCode
+              onDataReady={setFilters}
+              onDataResetRequest={() => setFilters(undefined)}
+            />
           </Tab>
-        ) : null}
-        <Tab name='Custom rules'>
-          <InputCode
-            onDataReady={setFilters}
-            onDataResetRequest={() => setFilters(undefined)}
-          />
-        </Tab>
-      </Tabs>
+        </Tabs>
+      </Spacer>
 
       <Spacer bottom='14'>
         <RelationshipSelector resourceType={resourceType} />

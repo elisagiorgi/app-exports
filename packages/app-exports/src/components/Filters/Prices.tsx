@@ -50,16 +50,14 @@ export function Prices({ onChange }: Props): JSX.Element | null {
         />
       </Spacer>
 
-      <Spacer bottom='6'>
-        <ResourceFinder
-          label='Price list'
-          resourceType='price_lists'
-          onSelect={(values) => {
-            updateFilters('price_list_id_eq', flatSelectValues(values))
-          }}
-          sdkClient={sdkClient}
-        />
-      </Spacer>
+      <ResourceFinder
+        label='Price list'
+        resourceType='price_lists'
+        onSelect={(values) => {
+          updateFilters('price_list_id_eq', flatSelectValues(values))
+        }}
+        sdkClient={sdkClient}
+      />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 declare module 'Filters' {
-  type FilterValue = string | number | Array<string | number> | null
+  type FilterValue = string | number | Array<string | number> | null | boolean
 
   type Filters<FiltrableField extends string> = Partial<
     Record<FiltrableField, FilterValue>

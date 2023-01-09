@@ -1,7 +1,7 @@
 import { ResourceFinder } from '#components/ResourceFinder'
 import {
   InputDateRange,
-  InputSelect,
+  RadioButtons,
   Spacer,
   flatSelectValues,
   useTokenProvider
@@ -62,9 +62,10 @@ export function Skus({ onChange }: Props): JSX.Element | null {
       </Spacer>
 
       <Spacer bottom='6'>
-        <InputSelect
+        <RadioButtons
+          id='product-type'
           label='Product Type'
-          initialValues={[
+          options={[
             {
               value: 'true',
               label: 'Shippable SKU'
@@ -74,9 +75,13 @@ export function Skus({ onChange }: Props): JSX.Element | null {
               label: 'Non-shippable SKU'
             }
           ]}
-          isClearable
-          onSelect={(values) => {
-            updateFilters('do_not_ship_false', flatSelectValues(values))
+          value={
+            filters.do_not_ship_false == null
+              ? undefined
+              : (filters.do_not_ship_false as string)
+          }
+          onChange={(value) => {
+            updateFilters('do_not_ship_false', value)
           }}
         />
       </Spacer>

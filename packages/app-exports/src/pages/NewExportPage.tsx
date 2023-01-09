@@ -139,14 +139,13 @@ const NewExportPage = (): JSX.Element | null => {
         <Button
           variant='primary'
           onClick={() => {
-            // TODO: validate (?)
             void createExportTask()
           }}
           disabled={isLoading}
         >
           {isLoading
-            ? 'Importing...'
-            : `Exporting ${showResourceNiceName(resourceType).toLowerCase()}`}
+            ? 'Exporting...'
+            : `Export ${showResourceNiceName(resourceType).toLowerCase()}`}
         </Button>
         {hasApiError ? (
           <div>

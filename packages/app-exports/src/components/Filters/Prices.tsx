@@ -41,9 +41,12 @@ export function Prices({ onChange }: Props): JSX.Element | null {
           resourceType='skus'
           isMulti
           onSelect={(values) => {
-            updateFilters('sku_id_in', flatSelectValues(values))
+            updateFilters('sku_code_in', flatSelectValues(values))
           }}
           sdkClient={sdkClient}
+          fields={['id', 'name', 'code']}
+          fieldForLabel='code'
+          fieldForValue='code'
         />
       </Spacer>
 

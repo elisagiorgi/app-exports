@@ -1,17 +1,13 @@
-import { CommerceLayerClient } from '@commercelayer/sdk'
 import { useEffect, useState } from 'react'
-import {
-  fetchInitialResources,
-  fetchResourcesByHint,
-  SearchableResource
-} from './utils'
+import { fetchInitialResources, fetchResourcesByHint } from './utils'
 import { InputSelect, Label } from '@commercelayer/core-app-elements'
 import {
   PossibleSelectValue,
   SelectValue
 } from '@commercelayer/core-app-elements/dist/ui/forms/InputSelect'
+import { SearchParams } from '#components/ResourceFinder/utils'
 
-interface Props {
+interface Props extends SearchParams {
   /**
    * Text to show above the input
    */
@@ -21,17 +17,9 @@ interface Props {
    */
   placeholder?: string
   /**
-   * the type of the resource we need to access
-   */
-  resourceType: SearchableResource
-  /**
    * Enables the selection of multiple values
    */
   isMulti?: boolean
-  /**
-   * A signed SDK client
-   */
-  sdkClient: CommerceLayerClient
   /**
    * callback function fired when the resource is selected from the list
    */
@@ -44,7 +32,10 @@ export function ResourceFinder({
   resourceType,
   sdkClient,
   isMulti,
-  onSelect
+  onSelect,
+  fields,
+  fieldForValue,
+  fieldForLabel
 }: Props): JSX.Element {
   const [isLoading, setIsLoading] = useState(true)
   const [initialValues, setInitialValues] = useState<SelectValue[]>([])
@@ -53,7 +44,13 @@ export function ResourceFinder({
       return
     }
     setIsLoading(true)
-    fetchInitialResources(sdkClient, resourceType)
+    fetchInitialResources({
+      sdkClient,
+      resourceType,
+      fields,
+      fieldForValue,
+      fieldForLabel
+    })
       .then(setInitialValues)
       .finally(() => {
         setIsLoading(false)
@@ -71,7 +68,14 @@ export function ResourceFinder({
         isClearable
         onSelect={onSelect}
         loadAsyncValues={async (hint) => {
-          return await fetchResourcesByHint(sdkClient, hint, resourceType)
+          return await fetchResourcesByHint({
+            sdkClient,
+            hint,
+            resourceType,
+            fields,
+            fieldForValue,
+            fieldForLabel
+          })
         }}
       />
     </div>

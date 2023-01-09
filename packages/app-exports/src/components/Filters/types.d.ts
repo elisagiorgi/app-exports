@@ -18,12 +18,12 @@ declare module 'Filters' {
   type SkusFilters = Filters<SkusField>
   type SkusField =
     | 'market_in'
-    | 'id_in'
+    | 'code_in'
     | 'created_at_gteq'
     | 'created_at_lteq'
     | 'do_not_ship_false' // is shippable
 
   // prices
   type PricesFilters = Filters<PricesField>
-  type PricesField = 'sku_id_in' | 'price_list_id_eq'
+  type PricesField = 'sku_code_in' | 'price_list_id_eq'
 }

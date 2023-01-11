@@ -9,7 +9,9 @@ export const exportRelationships: Record<ResourceWithRelationship, string[]> = {
     'shipping_address',
     'billing_address',
     'payment_method',
+    'line_items',
     'line_items.line_item_options',
+    'shipments',
     'shipments.shipping_method',
     'authorizations',
     'captures',
@@ -24,6 +26,7 @@ export const exportRelationships: Record<ResourceWithRelationship, string[]> = {
   shipping_methods: ['shipments'],
   skus: [
     'shipping_category',
+    'prices',
     'prices.price_tiers',
     'stock_items',
     'tax_categories'

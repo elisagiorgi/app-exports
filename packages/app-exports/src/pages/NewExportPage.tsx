@@ -34,6 +34,7 @@ const NewExportPage = (): JSX.Element | null => {
   const [isLoading, setIsLoading] = useState(false)
 
   const [filters, setFilters] = useState<AllFilters>()
+  const [includes, setIncludes] = useState<string[]>([])
   const [dryData, setDryData] = useState(false)
   const [format, setFormat] = useState('json')
 
@@ -60,6 +61,7 @@ const NewExportPage = (): JSX.Element | null => {
       await sdkClient.exports.create({
         resource_type: resourceType,
         dry_data: dryData,
+        includes,
         format,
         filters
       })
@@ -105,7 +107,10 @@ const NewExportPage = (): JSX.Element | null => {
       </Spacer>
 
       <Spacer bottom='14'>
-        <RelationshipSelector resourceType={resourceType} />
+        <RelationshipSelector
+          resourceType={resourceType}
+          onSelect={setIncludes}
+        />
       </Spacer>
 
       <Spacer bottom='14'>

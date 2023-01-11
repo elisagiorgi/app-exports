@@ -81,7 +81,6 @@ function adaptApiToSuggestions({
   fieldForValue = 'id',
   fieldForLabel = 'name'
 }: AdaptSuggestionsParams): SelectValue[] {
-  console.log(fetchedResources[0].type, 'fieldForValue', fieldForValue)
   return fetchedResources.map((r) => ({
     value: r[fieldForValue] ?? r.id,
     label: r[fieldForLabel] ?? r.id,

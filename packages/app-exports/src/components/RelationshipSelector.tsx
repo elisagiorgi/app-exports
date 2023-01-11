@@ -3,14 +3,16 @@ import {
   isResourceWithRelationship,
   getRelationshipsByResourceType
 } from '#data/relationships'
-import { InputSelect } from '@commercelayer/core-app-elements'
+import { InputSelect, flatSelectValues } from '@commercelayer/core-app-elements'
 
 interface Props {
   resourceType: AllowedResourceType
+  onSelect: (relationships: string[]) => void
 }
 
 export function RelationshipSelector({
-  resourceType
+  resourceType,
+  onSelect
 }: Props): JSX.Element | null {
   if (!isResourceWithRelationship(resourceType)) {
     return null
@@ -25,8 +27,19 @@ export function RelationshipSelector({
           value: r,
           label: r
         }))}
-        onSelect={() => {
-          //
+        onSelect={(relationships) => {
+          const values = flatSelectValues(relationships)
+          if (values == null) {
+            onSelect([])
+            return
+          }
+          if (Array.isArray(values)) {
+            onSelect(values.map(String))
+            return
+          }
+          if (typeof values === 'string') {
+            onSelect([values])
+          }
         }}
         isClearable
         isMulti

@@ -10,7 +10,7 @@ importers:
 
   packages/app-exports:
     specifiers:
-      '@commercelayer/core-app-elements': 0.0.1-beta.5
+      '@commercelayer/core-app-elements': 0.0.1-beta.7
       '@commercelayer/eslint-config-ts-react': ^0.1.4
       '@commercelayer/sdk': ^4.16.0
       '@testing-library/jest-dom': ^5.16.5
@@ -38,7 +38,7 @@ importers:
       wouter: ^2.9.0
       zod: 3.20.2
     dependencies:
-      '@commercelayer/core-app-elements': 0.0.1-beta.5_l2iwz5gth2wupm5oruopphiyiq
+      '@commercelayer/core-app-elements': 0.0.1-beta.7_l2iwz5gth2wupm5oruopphiyiq
       '@commercelayer/eslint-config-ts-react': 0.1.4_b7en3qybxvi7kqey6pvu247liq
       '@commercelayer/sdk': 4.20.0
       '@testing-library/jest-dom': 5.16.5
@@ -313,8 +313,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@commercelayer/core-app-elements/0.0.1-beta.5_l2iwz5gth2wupm5oruopphiyiq:
-    resolution: {integrity: sha512-LcNZ7+JiWH5HwUuKOp4X7Cd7ij0nXYtLjiplmLJI2TVPv1i78Oh6CjIFbndvVWbVtvY94rDbFr56+uWWd1WBfg==}
+  /@commercelayer/core-app-elements/0.0.1-beta.7_l2iwz5gth2wupm5oruopphiyiq:
+    resolution: {integrity: sha512-H6KGktWv7dUJS8BaSvHwWqghgrHZ//ngwlpgot6iHO4+903wOLMj5Y4kmaPKmcjHgq9xC4w4QImo0u+tLOn0Mg==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/sdk': ^4.x
@@ -323,7 +323,7 @@ packages:
       '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
-      '@types/lodash-es': 4.17.6
+      '@types/lodash': 4.14.191
       '@types/react': 18.0.26
       '@types/react-datepicker': 4.8.0_biqbaboplfbrettd7655fr4n2y
       '@types/react-dom': 18.0.9
@@ -333,7 +333,7 @@ packages:
       classnames: 2.3.2
       jsdom: 20.0.3
       jwt-decode: 3.1.2
-      lodash-es: 4.17.21
+      lodash: 4.17.21
       phosphor-react: 1.4.1_react@18.2.0
       polished: 4.2.2
       postcss: 8.4.20
@@ -2157,12 +2157,6 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-
-  /@types/lodash-es/4.17.6:
-    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
-    dependencies:
-      '@types/lodash': 4.14.191
-    dev: false
 
   /@types/lodash/4.14.191:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
@@ -5435,10 +5429,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-locate: 5.0.0
-    dev: false
-
-  /lodash-es/4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
   /lodash.get/4.4.2:

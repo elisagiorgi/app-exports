@@ -109,5 +109,30 @@ export const handlers = [
         }
       })
     )
+  }),
+
+  rest.get('https://*.commercelayer.io/oauth/tokeninfo', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        token: {
+          test: true,
+          market_ids: [],
+          stock_location_ids: [],
+          lifespan: 7176
+        },
+        role: { id: 'WApnPsnPLe', kind: 'admin', name: 'Admin' },
+        application: {
+          id: 'ApPkZilVBM',
+          kind: 'integration',
+          name: 'CLI',
+          core: false
+        },
+        permissions: {
+          imports: { actions: ['create', 'destroy', 'read', 'update'] },
+          exports: { actions: ['read'] }
+        }
+      })
+    )
   })
 ]

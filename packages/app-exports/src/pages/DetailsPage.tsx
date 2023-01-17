@@ -7,21 +7,39 @@ import {
   useTokenProvider,
   PageSkeleton,
   PageLayout,
-  Spacer
+  Spacer,
+  Button,
+  EmptyState
 } from '@commercelayer/core-app-elements'
-import { useLocation, useRoute } from 'wouter'
+import { useLocation, useRoute, Link } from 'wouter'
 import { ExportReport } from '#components/Details/ExportReport'
 import { ExportDetails } from '#components/Details/ExportDetails'
 
 const DetailsPage = (): JSX.Element | null => {
-  const { sdkClient } = useTokenProvider()
+  const { sdkClient, canUser } = useTokenProvider()
   const [_match, params] = useRoute(appRoutes.details.path)
   const [_, setLocation] = useLocation()
 
   const exportId = params == null ? null : params.exportId
 
-  if (exportId == null) {
-    return null
+  if (exportId == null || !canUser('read', 'exports')) {
+    return (
+      <PageLayout
+        title='Exports'
+        onGoBack={() => {
+          setLocation(appRoutes.list.makePath())
+        }}
+      >
+        <EmptyState
+          title='Not authorized'
+          action={
+            <Link href={appRoutes.list.makePath()}>
+              <Button variant='primary'>Go back</Button>
+            </Link>
+          }
+        />
+      </PageLayout>
+    )
   }
 
   if (sdkClient == null) {

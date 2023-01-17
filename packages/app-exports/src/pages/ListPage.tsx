@@ -16,12 +16,25 @@ import {
 import { DescriptionLine } from '#components/List/ItemDescriptionLine'
 
 function ListPage(): JSX.Element {
-  const { sdkClient, dashboardUrl } = useTokenProvider()
+  const { sdkClient, dashboardUrl, canUser } = useTokenProvider()
   const [_location, setLocation] = useLocation()
 
   if (sdkClient == null) {
     console.warn('Waiting for SDK client')
     return <PageSkeleton />
+  }
+
+  if (!canUser('read', 'exports')) {
+    return (
+      <PageLayout
+        title='Exports'
+        onGoBack={() => {
+          setLocation(appRoutes.list.makePath())
+        }}
+      >
+        <EmptyState title='You are not authorized' />
+      </PageLayout>
+    )
   }
 
   return (
@@ -54,9 +67,11 @@ function ListPage(): JSX.Element {
                   title='No export yet!'
                   description='Create your first export'
                   action={
-                    <Link href={appRoutes.selectResource.makePath()}>
-                      <Button variant='primary'>New export</Button>
-                    </Link>
+                    canUser('create', 'exports') ? (
+                      <Link href={appRoutes.selectResource.makePath()}>
+                        <Button variant='primary'>New export</Button>
+                      </Link>
+                    ) : undefined
                   }
                 />
               </div>
@@ -71,9 +86,11 @@ function ListPage(): JSX.Element {
               isDisabled={isRefetching}
               title='All Exports'
               actionButton={
-                <Link href={appRoutes.selectResource.makePath()}>
-                  <A>New export</A>
-                </Link>
+                canUser('create', 'exports') ? (
+                  <Link href={appRoutes.selectResource.makePath()}>
+                    <A>New export</A>
+                  </Link>
+                ) : undefined
               }
               pagination={{
                 recordsPerPage,
@@ -85,7 +102,8 @@ function ListPage(): JSX.Element {
             >
               {list.map((job) => {
                 const canDelete =
-                  job.status === 'pending' || job.status === 'in_progress'
+                  (job.status === 'pending' || job.status === 'in_progress') &&
+                  canUser('destroy', 'exports')
                 const statusUi = getUiStatus(job.status)
                 return (
                   <ListItemTask

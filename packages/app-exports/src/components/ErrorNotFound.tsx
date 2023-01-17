@@ -11,7 +11,7 @@ export function ErrorNotFound(): JSX.Element {
 
   return (
     <PageLayout
-      title='Imports'
+      title='Exports'
       onGoBack={() => {
         setLocation(appRoutes.list.makePath())
       }}

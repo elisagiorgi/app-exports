@@ -18,24 +18,22 @@ export function ExportDetails(): JSX.Element | null {
   return (
     <ListDetails title='Details'>
       {data.status != null ? (
-        <ListDetailsItem label='Status' hasGutter>
+        <ListDetailsItem label='Status'>
           <StatusBadge job={data} />
         </ListDetailsItem>
       ) : null}
       {data.includes != null && data.includes.length > 0 ? (
-        <ListDetailsItem label='Includes' hasGutter>
+        <ListDetailsItem label='Includes'>
           {data.includes.join(', ')}
         </ListDetailsItem>
       ) : null}
-      <ListDetailsItem label='Filters' hasGutter>
+      <ListDetailsItem label='Filters'>
         <BlockCode json={data.filters} />
       </ListDetailsItem>
-      <ListDetailsItem label='Dry Data' hasGutter>
+      <ListDetailsItem label='Dry Data'>
         {data.dry_data === true ? 'true' : 'false'}
       </ListDetailsItem>
-      <ListDetailsItem label='Format' hasGutter>
-        {data.format}
-      </ListDetailsItem>
+      <ListDetailsItem label='Format'>{data.format}</ListDetailsItem>
     </ListDetails>
   )
 }

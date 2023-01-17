@@ -12,9 +12,10 @@ import {
   Text,
   InputToggleListBox,
   Tabs,
-  Tab
+  Tab,
+  EmptyState
 } from '@commercelayer/core-app-elements'
-import { useLocation, useRoute } from 'wouter'
+import { useLocation, useRoute, Link } from 'wouter'
 import { RelationshipSelector } from '#components/RelationshipSelector'
 import { useEffect, useState } from 'react'
 import { ApiError } from 'App'
@@ -26,7 +27,7 @@ import { validateRecordsCount } from '#utils/validateRecordsCount'
 import { parseApiError } from '#utils/apiErrors'
 
 const NewExportPage = (): JSX.Element | null => {
-  const { sdkClient } = useTokenProvider()
+  const { sdkClient, canUser } = useTokenProvider()
   const [_match, params] = useRoute(appRoutes.newExport.path)
   const [_location, setLocation] = useLocation()
 
@@ -46,6 +47,26 @@ const NewExportPage = (): JSX.Element | null => {
   if (sdkClient == null) {
     console.warn('Waiting for SDK client')
     return <PageSkeleton hasHeaderDescription />
+  }
+
+  if (!canUser('create', 'exports')) {
+    return (
+      <PageLayout
+        title='Exports'
+        onGoBack={() => {
+          setLocation(appRoutes.list.makePath())
+        }}
+      >
+        <EmptyState
+          title='You are not authorized'
+          action={
+            <Link href={appRoutes.list.makePath()}>
+              <Button variant='primary'>Go back</Button>
+            </Link>
+          }
+        />
+      </PageLayout>
+    )
   }
 
   const createExportTask = async (): Promise<void> => {

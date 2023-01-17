@@ -6,15 +6,18 @@ import {
   List,
   ListItem,
   PageLayout,
-  Spacer
+  Spacer,
+  useTokenProvider
 } from '@commercelayer/core-app-elements'
 
 export function ResourceSelectorPage(): JSX.Element {
+  const { mode } = useTokenProvider()
   const [_, setLocation] = useLocation()
 
   return (
     <PageLayout
       title='Select type'
+      isTestMode={mode === 'test'}
       onGoBack={() => {
         setLocation(appRoutes.list.makePath())
       }}

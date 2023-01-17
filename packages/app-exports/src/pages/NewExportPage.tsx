@@ -27,7 +27,7 @@ import { validateRecordsCount } from '#utils/validateRecordsCount'
 import { parseApiError } from '#utils/apiErrors'
 
 const NewExportPage = (): JSX.Element | null => {
-  const { sdkClient, canUser } = useTokenProvider()
+  const { sdkClient, canUser, mode } = useTokenProvider()
   const [_match, params] = useRoute(appRoutes.newExport.path)
   const [_location, setLocation] = useLocation()
 
@@ -53,6 +53,7 @@ const NewExportPage = (): JSX.Element | null => {
     return (
       <PageLayout
         title='Exports'
+        isTestMode={mode === 'test'}
         onGoBack={() => {
           setLocation(appRoutes.list.makePath())
         }}
@@ -107,6 +108,7 @@ const NewExportPage = (): JSX.Element | null => {
   return (
     <PageLayout
       title={`Export ${showResourceNiceName(resourceType).toLowerCase()}`}
+      isTestMode={mode === 'test'}
       onGoBack={() => {
         setLocation(appRoutes.selectResource.makePath())
       }}

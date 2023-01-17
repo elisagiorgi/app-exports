@@ -16,7 +16,7 @@ import {
 import { DescriptionLine } from '#components/List/ItemDescriptionLine'
 
 function ListPage(): JSX.Element {
-  const { sdkClient, dashboardUrl, canUser } = useTokenProvider()
+  const { sdkClient, dashboardUrl, canUser, mode } = useTokenProvider()
   const [_location, setLocation] = useLocation()
 
   if (sdkClient == null) {
@@ -28,6 +28,7 @@ function ListPage(): JSX.Element {
     return (
       <PageLayout
         title='Exports'
+        isTestMode={mode === 'test'}
         onGoBack={() => {
           setLocation(appRoutes.list.makePath())
         }}
@@ -40,6 +41,7 @@ function ListPage(): JSX.Element {
   return (
     <PageLayout
       title='Exports'
+      isTestMode={mode === 'test'}
       onGoBack={() => {
         window.location.href = dashboardUrl != null ? dashboardUrl : '/'
       }}

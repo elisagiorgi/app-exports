@@ -16,7 +16,7 @@ import { ExportReport } from '#components/Details/ExportReport'
 import { ExportDetails } from '#components/Details/ExportDetails'
 
 const DetailsPage = (): JSX.Element | null => {
-  const { sdkClient, canUser } = useTokenProvider()
+  const { sdkClient, canUser, mode } = useTokenProvider()
   const [_match, params] = useRoute(appRoutes.details.path)
   const [_, setLocation] = useLocation()
 
@@ -29,6 +29,7 @@ const DetailsPage = (): JSX.Element | null => {
         onGoBack={() => {
           setLocation(appRoutes.list.makePath())
         }}
+        isTestMode={mode === 'test'}
       >
         <EmptyState
           title='Not authorized'
@@ -57,6 +58,7 @@ const DetailsPage = (): JSX.Element | null => {
         ) : (
           <PageLayout
             title={<ExportedResourceType />}
+            isTestMode={mode === 'test'}
             description={
               <ExportDate
                 atType='completed_at'

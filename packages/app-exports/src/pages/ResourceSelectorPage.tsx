@@ -17,7 +17,7 @@ export function ResourceSelectorPage(): JSX.Element {
   return (
     <PageLayout
       title='Select type'
-      isTestMode={mode === 'test'}
+      mode={mode}
       onGoBack={() => {
         setLocation(appRoutes.list.makePath())
       }}

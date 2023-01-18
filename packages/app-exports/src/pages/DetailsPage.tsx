@@ -29,7 +29,7 @@ const DetailsPage = (): JSX.Element | null => {
         onGoBack={() => {
           setLocation(appRoutes.list.makePath())
         }}
-        isTestMode={mode === 'test'}
+        mode={mode}
       >
         <EmptyState
           title='Not authorized'
@@ -58,7 +58,7 @@ const DetailsPage = (): JSX.Element | null => {
         ) : (
           <PageLayout
             title={<ExportedResourceType />}
-            isTestMode={mode === 'test'}
+            mode={mode}
             description={
               <ExportDate
                 atType='completed_at'

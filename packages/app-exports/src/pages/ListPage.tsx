@@ -28,7 +28,7 @@ function ListPage(): JSX.Element {
     return (
       <PageLayout
         title='Exports'
-        isTestMode={mode === 'test'}
+        mode={mode}
         onGoBack={() => {
           setLocation(appRoutes.list.makePath())
         }}
@@ -41,7 +41,7 @@ function ListPage(): JSX.Element {
   return (
     <PageLayout
       title='Exports'
-      isTestMode={mode === 'test'}
+      mode={mode}
       onGoBack={() => {
         window.location.href = dashboardUrl != null ? dashboardUrl : '/'
       }}

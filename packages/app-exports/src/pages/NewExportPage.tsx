@@ -53,7 +53,7 @@ const NewExportPage = (): JSX.Element | null => {
     return (
       <PageLayout
         title='Exports'
-        isTestMode={mode === 'test'}
+        mode={mode}
         onGoBack={() => {
           setLocation(appRoutes.list.makePath())
         }}
@@ -108,7 +108,7 @@ const NewExportPage = (): JSX.Element | null => {
   return (
     <PageLayout
       title={`Export ${showResourceNiceName(resourceType).toLowerCase()}`}
-      isTestMode={mode === 'test'}
+      mode={mode}
       onGoBack={() => {
         setLocation(appRoutes.selectResource.makePath())
       }}

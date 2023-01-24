@@ -1,4 +1,4 @@
-declare module 'Filters' {
+declare module 'AppForm' {
   type FilterValue = string | number | Array<string | number> | null | boolean
 
   type Filters<FiltrableField extends string> = Partial<
@@ -26,4 +26,13 @@ declare module 'Filters' {
   // prices
   type PricesFilters = Filters<PricesField>
   type PricesField = 'sku_code_in' | 'price_list_id_eq'
+
+  type ExportFormat = 'csv' | 'json'
+
+  interface ExportFormValues {
+    dryData: boolean
+    includes: string[]
+    format: ExportFormat
+    filters?: AllFilters
+  }
 }

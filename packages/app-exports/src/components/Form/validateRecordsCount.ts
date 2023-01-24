@@ -1,6 +1,6 @@
 import { CommerceLayerClient } from '@commercelayer/sdk'
 import { AllowedResourceType } from 'App'
-import { AllFilters } from 'Filters'
+import { AllFilters } from 'AppForm'
 
 const MAX_EXPORTABLE_RECORDS = 10_000
 

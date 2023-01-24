@@ -1,27 +1,27 @@
-import { ResourceFinder } from '#components/ResourceFinder'
+import { ResourceFinder } from '#components/Form/ResourceFinder'
 import {
   InputDateRange,
-  InputSelect,
+  RadioButtons,
   Spacer,
   flatSelectValues,
   useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
-import { OrdersField, OrdersFilters, FilterValue } from 'Filters'
+import { FilterValue, SkusFilters, SkusField } from 'AppForm'
 import { useEffect, useState } from 'react'
 
 interface Props {
-  onChange: (filters: OrdersFilters) => void
+  onChange: (filters: SkusFilters) => void
 }
 
-export function Orders({ onChange }: Props): JSX.Element | null {
+export function Skus({ onChange }: Props): JSX.Element | null {
   const { sdkClient } = useCoreSdkProvider()
-  const [filters, setFilter] = useState<OrdersFilters>({})
+  const [filters, setFilter] = useState<SkusFilters>({})
 
   if (sdkClient == null) {
     return null
   }
 
-  const updateFilters = (key: OrdersField, value: FilterValue): void => {
+  const updateFilters = (key: SkusField, value: FilterValue): void => {
     setFilter((state) => ({
       ...state,
       [key]: value
@@ -50,33 +50,41 @@ export function Orders({ onChange }: Props): JSX.Element | null {
       </Spacer>
 
       <Spacer bottom='6'>
-        <InputSelect
-          label='Status'
-          initialValues={[
-            {
-              value: 'draft',
-              label: 'Draft'
-            },
-            {
-              value: 'placed',
-              label: 'Placed'
-            },
-            {
-              value: 'pending',
-              label: 'Pending'
-            },
-            {
-              value: 'approved',
-              label: 'Approved'
-            },
-            {
-              value: 'cancelled',
-              label: 'Cancelled'
-            }
-          ]}
+        <ResourceFinder
+          label='SKU codes'
+          resourceType='skus'
           isMulti
           onSelect={(values) => {
-            updateFilters('status_in', flatSelectValues(values))
+            updateFilters('code_in', flatSelectValues(values))
+          }}
+          sdkClient={sdkClient}
+          fields={['id', 'name', 'code']}
+          fieldForLabel='code'
+          fieldForValue='code'
+        />
+      </Spacer>
+
+      <Spacer bottom='6'>
+        <RadioButtons
+          id='product-type'
+          label='Product Type'
+          options={[
+            {
+              value: 'true',
+              label: 'Shippable SKU'
+            },
+            {
+              value: 'false',
+              label: 'Non-shippable SKU'
+            }
+          ]}
+          value={
+            filters.do_not_ship_false == null
+              ? undefined
+              : (filters.do_not_ship_false as string)
+          }
+          onChange={(value) => {
+            updateFilters('do_not_ship_false', value)
           }}
         />
       </Spacer>

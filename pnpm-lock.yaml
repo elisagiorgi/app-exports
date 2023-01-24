@@ -29,6 +29,7 @@ importers:
       prettier: ^2.7.1
       react: ^18.2.0
       react-dom: ^18.2.0
+      react-hook-form: ^7.42.1
       stylelint: ^14.12.0
       stylelint-config-standard: ^28.0.0
       stylelint-prettier: ^2.0.0
@@ -55,6 +56,7 @@ importers:
       only-allow: 1.1.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+      react-hook-form: 7.42.1_react@18.2.0
       typescript: 4.9.4
       vite: 4.0.4_@types+node@18.0.1
       vitest: 0.26.3_jsdom@20.0.3
@@ -6774,6 +6776,15 @@ packages:
 
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
+  /react-hook-form/7.42.1_react@18.2.0:
+    resolution: {integrity: sha512-2UIGqwMZksd5HS55crTT1ATLTr0rAI4jS7yVuqTaoRVDhY2Qc4IyjskCmpnmdYqUNOYFy04vW253tb2JRVh+IQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:

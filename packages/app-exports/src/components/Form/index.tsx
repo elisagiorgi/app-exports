@@ -1,5 +1,5 @@
 import { AllowedResourceType } from 'App'
-import { AllFilters, ExportFormValues, ExportFormat } from 'AppForm'
+import { ExportFormValues } from 'AppForm'
 import { showResourceNiceName } from '#data/resources'
 import {
   InputToggleBox,
@@ -10,11 +10,11 @@ import {
   Tabs,
   Tab
 } from '@commercelayer/core-app-elements'
-import { RelationshipSelector } from '#components/RelationshipSelector'
+import { RelationshipSelector } from './RelationshipSelector'
 import { Filters } from '#components/Form/Filters'
 import { resourcesWithFilters } from '#components/Form/Filters/index'
 import { InputCode } from '#components/Form/Filters/InputCode'
-import { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 
 interface Props {
   resourceType: AllowedResourceType
@@ -29,33 +29,58 @@ export function Form({
   initialData,
   onSubmit
 }: Props): JSX.Element {
-  const [filters, setFilters] = useState<AllFilters>(initialData.filters)
-  const [includes, setIncludes] = useState<string[]>(initialData.includes)
-  const [dryData, setDryData] = useState(initialData.dryData)
-  const [format, setFormat] = useState<ExportFormat>(initialData.format)
+  const { register, control, handleSubmit } = useForm<ExportFormValues>({
+    defaultValues: initialData
+  })
+
+  const doSubmit = handleSubmit((data) => {
+    onSubmit(data)
+  })
 
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        void doSubmit(e)
+      }}
+    >
       <Spacer bottom='6'>
         <Tabs keepAlive>
           {resourcesWithFilters.includes(resourceType) ? (
             <Tab name='Filters'>
-              <Filters resourceType={resourceType} onChange={setFilters} />
+              <Controller
+                name='filters'
+                control={control}
+                render={({ field: { onChange } }) => (
+                  <Filters resourceType={resourceType} onChange={onChange} />
+                )}
+              />
             </Tab>
           ) : null}
           <Tab name='Custom rules'>
-            <InputCode
-              onDataReady={setFilters}
-              onDataResetRequest={() => setFilters(undefined)}
+            <Controller
+              name='filters'
+              control={control}
+              render={({ field: { onChange } }) => (
+                <InputCode
+                  onDataReady={onChange}
+                  onDataResetRequest={() => onChange(undefined)}
+                />
+              )}
             />
           </Tab>
         </Tabs>
       </Spacer>
 
       <Spacer bottom='14'>
-        <RelationshipSelector
-          resourceType={resourceType}
-          onSelect={setIncludes}
+        <Controller
+          name='includes'
+          control={control}
+          render={({ field: { onChange } }) => (
+            <RelationshipSelector
+              resourceType={resourceType}
+              onChange={onChange}
+            />
+          )}
         />
       </Spacer>
 
@@ -67,14 +92,11 @@ export function Form({
           <InputToggleBox
             id='toggle-cleanup'
             label='Dry data to make importable'
-            isChecked={dryData}
-            onToggle={setDryData}
+            {...register('dryData')}
           />
           <InputToggleListBox
             id='format'
             label='Export format'
-            value={format}
-            onSelect={(value) => setFormat(value as ExportFormat)}
             options={[
               { label: 'JSON', value: 'json' },
               {
@@ -82,22 +104,12 @@ export function Form({
                 value: 'csv'
               }
             ]}
+            {...register('format')}
           />
         </div>
       </Spacer>
 
-      <Button
-        variant='primary'
-        onClick={() => {
-          onSubmit({
-            filters,
-            includes,
-            dryData,
-            format
-          })
-        }}
-        disabled={isLoading}
-      >
+      <Button variant='primary' type='submit' disabled={isLoading}>
         {isLoading
           ? 'Exporting...'
           : `Export ${showResourceNiceName(resourceType).toLowerCase()}`}

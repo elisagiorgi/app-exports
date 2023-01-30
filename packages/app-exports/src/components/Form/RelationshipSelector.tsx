@@ -3,16 +3,14 @@ import {
   isResourceWithRelationship,
   getRelationshipsByResourceType
 } from '#data/relationships'
-import { InputSelect, flatSelectValues } from '@commercelayer/core-app-elements'
+import { InputSelect } from '@commercelayer/bo-app-elements-hook-form'
 
 interface Props {
   resourceType: AllowedResourceType
-  onChange: (relationships: string[]) => void
 }
 
 export function RelationshipSelector({
-  resourceType,
-  onChange
+  resourceType
 }: Props): JSX.Element | null {
   if (!isResourceWithRelationship(resourceType)) {
     return null
@@ -26,20 +24,7 @@ export function RelationshipSelector({
         value: r,
         label: r
       }))}
-      onSelect={(relationships) => {
-        const values = flatSelectValues(relationships)
-        if (values == null) {
-          onChange([])
-          return
-        }
-        if (Array.isArray(values)) {
-          onChange(values.map(String))
-          return
-        }
-        if (typeof values === 'string') {
-          onChange([values])
-        }
-      }}
+      name='includes'
       isClearable
       isMulti
       helperText='List of relationships to be included in the export.'

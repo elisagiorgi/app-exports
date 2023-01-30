@@ -1,4 +1,6 @@
 declare module 'AppForm' {
+  import { SelectValue } from '@commercelayer/core-app-elements'
+
   type FilterValue = string | number | Array<string | number> | null | boolean
 
   type Filters<FiltrableField extends string> = Partial<
@@ -31,7 +33,7 @@ declare module 'AppForm' {
 
   interface ExportFormValues {
     dryData: boolean
-    includes: string[]
+    includes: SelectValue[]
     format: ExportFormat
     filters?: AllFilters
   }

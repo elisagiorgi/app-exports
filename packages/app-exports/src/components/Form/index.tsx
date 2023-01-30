@@ -2,11 +2,9 @@ import { AllowedResourceType } from 'App'
 import { ExportFormValues } from 'AppForm'
 import { showResourceNiceName } from '#data/resources'
 import {
-  InputToggleBox,
   Label,
   Spacer,
   Button,
-  InputToggleListBox,
   Tabs,
   Tab
 } from '@commercelayer/core-app-elements'
@@ -15,6 +13,11 @@ import { Filters } from '#components/Form/Filters'
 import { resourcesWithFilters } from '#components/Form/Filters/index'
 import { InputCode } from '#components/Form/Filters/InputCode'
 import { Controller, useForm } from 'react-hook-form'
+import {
+  InputToggleBox,
+  InputToggleListBox,
+  Form as FormProvider
+} from '@commercelayer/bo-app-elements-hook-form'
 
 interface Props {
   resourceType: AllowedResourceType
@@ -29,27 +32,19 @@ export function Form({
   initialData,
   onSubmit
 }: Props): JSX.Element {
-  const { register, control, handleSubmit } = useForm<ExportFormValues>({
+  const methods = useForm<ExportFormValues>({
     defaultValues: initialData
   })
 
-  const doSubmit = handleSubmit((data) => {
-    onSubmit(data)
-  })
-
   return (
-    <form
-      onSubmit={(e) => {
-        void doSubmit(e)
-      }}
-    >
+    <FormProvider {...methods} onSubmit={onSubmit}>
       <Spacer bottom='6'>
         <Tabs keepAlive>
           {resourcesWithFilters.includes(resourceType) ? (
             <Tab name='Filters'>
               <Controller
                 name='filters'
-                control={control}
+                control={methods.control}
                 render={({ field: { onChange } }) => (
                   <Filters resourceType={resourceType} onChange={onChange} />
                 )}
@@ -59,7 +54,7 @@ export function Form({
           <Tab name='Custom rules'>
             <Controller
               name='filters'
-              control={control}
+              control={methods.control}
               render={({ field: { onChange } }) => (
                 <InputCode
                   onDataReady={onChange}
@@ -70,18 +65,8 @@ export function Form({
           </Tab>
         </Tabs>
       </Spacer>
-
       <Spacer bottom='14'>
-        <Controller
-          name='includes'
-          control={control}
-          render={({ field: { onChange } }) => (
-            <RelationshipSelector
-              resourceType={resourceType}
-              onChange={onChange}
-            />
-          )}
-        />
+        <RelationshipSelector resourceType={resourceType} />
       </Spacer>
 
       <Spacer bottom='14'>
@@ -92,7 +77,7 @@ export function Form({
           <InputToggleBox
             id='toggle-cleanup'
             label='Dry data to make importable'
-            {...register('dryData')}
+            name='dryData'
           />
           <InputToggleListBox
             id='format'
@@ -104,7 +89,7 @@ export function Form({
                 value: 'csv'
               }
             ]}
-            {...register('format')}
+            name='format'
           />
         </div>
       </Spacer>
@@ -114,6 +99,6 @@ export function Form({
           ? 'Exporting...'
           : `Export ${showResourceNiceName(resourceType).toLowerCase()}`}
       </Button>
-    </form>
+    </FormProvider>
   )
 }

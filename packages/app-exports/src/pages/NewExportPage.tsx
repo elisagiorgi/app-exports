@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { ApiError } from 'App'
-import { ExportFormValues } from 'AppForm'
 import {
   useTokenProvider,
   PageSkeleton,
@@ -18,6 +17,7 @@ import { appRoutes } from '#data/routes'
 import { Form } from '#components/Form'
 import { validateRecordsCount } from '#components/Form/validateRecordsCount'
 import { parseApiError } from '#utils/apiErrors'
+import { ExportFormValues } from 'AppForm'
 
 const NewExportPage = (): JSX.Element | null => {
   const {
@@ -75,7 +75,7 @@ const NewExportPage = (): JSX.Element | null => {
       await sdkClient.exports.create({
         resource_type: resourceType,
         dry_data: values.dryData,
-        includes: values.includes,
+        includes: values.includes.map(({ value }) => String(value)),
         format: values.format,
         filters: values.filters
       })

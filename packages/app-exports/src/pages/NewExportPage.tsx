@@ -100,7 +100,7 @@ const NewExportPage = (): JSX.Element | null => {
         <Form
           resourceType={resourceType}
           isLoading={isLoading}
-          initialData={{
+          defaultValues={{
             dryData: false,
             format: 'json',
             includes: []

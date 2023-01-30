@@ -22,18 +22,18 @@ import {
 interface Props {
   resourceType: AllowedResourceType
   isLoading?: boolean
-  initialData: ExportFormValues
+  defaultValues: ExportFormValues
   onSubmit: (values: ExportFormValues) => void
 }
 
 export function Form({
   isLoading = false,
   resourceType,
-  initialData,
+  defaultValues,
   onSubmit
 }: Props): JSX.Element {
   const methods = useForm<ExportFormValues>({
-    defaultValues: initialData
+    defaultValues
   })
 
   return (

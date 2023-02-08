@@ -11,18 +11,26 @@ import {
   List,
   ListItemTask,
   EmptyState,
-  useTokenProvider
+  useTokenProvider,
+  useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
 import { DescriptionLine } from '#components/List/ItemDescriptionLine'
 
 function ListPage(): JSX.Element {
-  const { sdkClient, dashboardUrl, canUser, mode } = useTokenProvider()
+  const {
+    dashboardUrl,
+    canUser,
+    settings: { mode }
+  } = useTokenProvider()
+  const { sdkClient } = useCoreSdkProvider()
+
   const [_location, setLocation] = useLocation()
 
   if (sdkClient == null) {
-    console.warn('Waiting for SDK client')
     return <PageSkeleton />
   }
+
+  console.log(canUser('read', 'exports'))
 
   if (!canUser('read', 'exports')) {
     return (

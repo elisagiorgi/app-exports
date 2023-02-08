@@ -4,7 +4,7 @@ import {
   RadioButtons,
   Spacer,
   flatSelectValues,
-  useTokenProvider
+  useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
 import { FilterValue, SkusFilters, SkusField } from 'Filters'
 import { useEffect, useState } from 'react'
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function Skus({ onChange }: Props): JSX.Element | null {
-  const { sdkClient } = useTokenProvider()
+  const { sdkClient } = useCoreSdkProvider()
   const [filters, setFilter] = useState<SkusFilters>({})
 
   if (sdkClient == null) {

@@ -11,7 +11,9 @@ import {
 } from '@commercelayer/core-app-elements'
 
 export function ResourceSelectorPage(): JSX.Element {
-  const { mode } = useTokenProvider()
+  const {
+    settings: { mode }
+  } = useTokenProvider()
   const [_, setLocation] = useLocation()
 
   return (

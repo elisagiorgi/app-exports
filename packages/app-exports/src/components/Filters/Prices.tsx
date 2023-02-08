@@ -2,7 +2,7 @@ import { ResourceFinder } from '#components/ResourceFinder'
 import {
   Spacer,
   flatSelectValues,
-  useTokenProvider
+  useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
 import { FilterValue, PricesFilters, PricesField } from 'Filters'
 import { useEffect, useState } from 'react'
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export function Prices({ onChange }: Props): JSX.Element | null {
-  const { sdkClient } = useTokenProvider()
+  const { sdkClient } = useCoreSdkProvider()
   const [filters, setFilter] = useState<PricesFilters>({})
 
   if (sdkClient == null) {

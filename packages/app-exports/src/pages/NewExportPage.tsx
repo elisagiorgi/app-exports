@@ -13,7 +13,8 @@ import {
   InputToggleListBox,
   Tabs,
   Tab,
-  EmptyState
+  EmptyState,
+  useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute, Link } from 'wouter'
 import { RelationshipSelector } from '#components/RelationshipSelector'
@@ -27,7 +28,12 @@ import { validateRecordsCount } from '#utils/validateRecordsCount'
 import { parseApiError } from '#utils/apiErrors'
 
 const NewExportPage = (): JSX.Element | null => {
-  const { sdkClient, canUser, mode } = useTokenProvider()
+  const {
+    canUser,
+    settings: { mode }
+  } = useTokenProvider()
+  const { sdkClient } = useCoreSdkProvider()
+
   const [_match, params] = useRoute(appRoutes.newExport.path)
   const [_location, setLocation] = useLocation()
 
@@ -45,7 +51,6 @@ const NewExportPage = (): JSX.Element | null => {
   }
 
   if (sdkClient == null) {
-    console.warn('Waiting for SDK client')
     return <PageSkeleton hasHeaderDescription />
   }
 

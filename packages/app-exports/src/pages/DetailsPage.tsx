@@ -9,14 +9,19 @@ import {
   PageLayout,
   Spacer,
   Button,
-  EmptyState
+  EmptyState,
+  useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute, Link } from 'wouter'
 import { ExportReport } from '#components/Details/ExportReport'
 import { ExportDetails } from '#components/Details/ExportDetails'
 
 const DetailsPage = (): JSX.Element | null => {
-  const { sdkClient, canUser, mode } = useTokenProvider()
+  const {
+    canUser,
+    settings: { mode }
+  } = useTokenProvider()
+  const { sdkClient } = useCoreSdkProvider()
   const [_match, params] = useRoute(appRoutes.details.path)
   const [_, setLocation] = useLocation()
 
@@ -44,7 +49,6 @@ const DetailsPage = (): JSX.Element | null => {
   }
 
   if (sdkClient == null) {
-    console.warn('Waiting for SDK client')
     return <PageSkeleton layout='details' hasHeaderDescription />
   }
 

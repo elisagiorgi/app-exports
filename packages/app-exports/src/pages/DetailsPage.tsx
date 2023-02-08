@@ -62,7 +62,7 @@ const DetailsPage = (): JSX.Element | null => {
             description={
               <ExportDate
                 atType='completed_at'
-                prefixText='Imported on '
+                prefixText='Exported on '
                 includeTime
               />
             }

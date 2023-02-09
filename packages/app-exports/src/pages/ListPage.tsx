@@ -30,8 +30,6 @@ function ListPage(): JSX.Element {
     return <PageSkeleton />
   }
 
-  console.log(canUser('read', 'exports'))
-
   if (!canUser('read', 'exports')) {
     return (
       <PageLayout

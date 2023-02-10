@@ -39,18 +39,6 @@ export function Skus({ onChange }: Props): JSX.Element | null {
     <div>
       <Spacer bottom='6'>
         <ResourceFinder
-          label='Markets'
-          resourceType='markets'
-          isMulti
-          onSelect={(values) => {
-            updateFilters('market_in', flatSelectValues(values))
-          }}
-          sdkClient={sdkClient}
-        />
-      </Spacer>
-
-      <Spacer bottom='6'>
-        <ResourceFinder
           label='SKU codes'
           resourceType='skus'
           isMulti

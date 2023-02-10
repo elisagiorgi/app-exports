@@ -19,7 +19,6 @@ declare module 'AppForm' {
   // skus
   type SkusFilters = Filters<SkusField>
   type SkusField =
-    | 'market_in'
     | 'code_in'
     | 'created_at_gteq'
     | 'created_at_lteq'

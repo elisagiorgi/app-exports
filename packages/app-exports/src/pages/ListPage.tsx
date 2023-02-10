@@ -49,7 +49,8 @@ function ListPage(): JSX.Element {
       title='Exports'
       mode={mode}
       onGoBack={() => {
-        window.location.href = dashboardUrl != null ? dashboardUrl : '/'
+        window.location.href =
+          dashboardUrl != null ? `${dashboardUrl}/hub` : '/'
       }}
     >
       <ListExportProvider sdkClient={sdkClient} pageSize={25}>

@@ -3,7 +3,7 @@ import {
   isResourceWithRelationship,
   getRelationshipsByResourceType
 } from '#data/relationships'
-import { InputSelect } from '@commercelayer/bo-app-elements-hook-form'
+import { InputSelect } from '@commercelayer/app-elements-hook-form'
 
 interface Props {
   resourceType: AllowedResourceType

@@ -17,7 +17,7 @@ import {
   InputToggleBox,
   InputToggleListBox,
   Form as FormProvider
-} from '@commercelayer/bo-app-elements-hook-form'
+} from '@commercelayer/app-elements-hook-form'
 
 interface Props {
   resourceType: AllowedResourceType

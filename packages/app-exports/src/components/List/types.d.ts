@@ -8,19 +8,10 @@ declare module 'App' {
     deleteExport: (id: string) => void
   }
 
-  export type ListExportAllowedStatusType =
-    | 'completed'
-    | 'interrupted'
-    | 'in_progress'
-    | 'pending'
-
   export interface ListExportContextState {
     list?: ListResponse<Export>
     isLoading: boolean
     isPolling: boolean
     currentPage: number
-    sort: {
-      created_at: 'asc' | 'desc'
-    }
   }
 }

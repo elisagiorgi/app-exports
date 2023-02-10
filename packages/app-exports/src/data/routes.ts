@@ -20,7 +20,7 @@ export const appRoutes = {
     makePath: (resourceType: AllowedResourceType) => `/new/${resourceType}`
   },
   details: {
-    path: '/details/:exportId',
-    makePath: (exportId: string) => `/details/${exportId}/`
+    path: '/:exportId',
+    makePath: (exportId: string) => `/${exportId}`
   }
 }

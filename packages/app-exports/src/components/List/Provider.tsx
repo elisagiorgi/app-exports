@@ -15,9 +15,18 @@ import { initialValues, initialState } from './data'
 import { reducer } from './reducer'
 
 interface ListExportProviderProps {
+  /**
+   * Number of items to fetch/load per page.
+   */
   pageSize: number
-  children: ((props: ListExportContextValue) => ReactNode) | ReactNode
+  /**
+   * a valid SDK client
+   */
   sdkClient: CommerceLayerClient
+  /**
+   * Inner content where context exists
+   */
+  children: ((props: ListExportContextValue) => ReactNode) | ReactNode
 }
 const POLLING_INTERVAL = 4000
 
@@ -38,66 +47,42 @@ export function ListExportProvider({
     []
   )
 
-  const fetchList = useCallback(
-    async ({ handleLoadingState }: { handleLoadingState: boolean }) => {
-      handleLoadingState && dispatch({ type: 'setLoading', payload: true })
-      try {
-        const list = await getAllExports({
-          cl: sdkClient,
-          state,
-          pageSize
-        })
-        dispatch({ type: 'setList', payload: list })
-      } finally {
-        handleLoadingState && dispatch({ type: 'setLoading', payload: false })
-      }
-    },
-    [state.currentPage]
-  )
+  const fetchList = useCallback(async () => {
+    const list = await getAllExports({
+      cl: sdkClient,
+      state,
+      pageSize
+    })
+    dispatch({ type: 'loadData', payload: list })
+  }, [state.currentPage])
 
   const deleteExport = (exportId: string): void => {
     sdkClient.exports
       .delete(exportId)
+      .then(fetchList)
       .catch(() => {
         console.error('Export not found')
-      })
-      .finally(() => {
-        void fetchList({ handleLoadingState: false })
       })
   }
 
   useEffect(
-    function handleChangePageSkippingFirstRender() {
+    function handleChangePageIgnoringFirstRender() {
       if (state.list?.meta.currentPage != null) {
-        void fetchList({ handleLoadingState: false })
+        void fetchList()
       }
     },
     [state.currentPage]
   )
 
   useEffect(
-    function handlePollingState() {
-      if (state.list == null || state.list.length === 0) {
-        return
-      }
-
-      const shouldPoll = state.list.some((job) =>
-        statusForPolling.includes(job.status)
-      )
-      dispatch({ type: 'togglePolling', payload: shouldPoll })
-    },
-    [state.list]
-  )
-
-  useEffect(
-    function startPolling() {
-      void fetchList({ handleLoadingState: true })
+    function init() {
+      void fetchList()
       if (!state.isPolling) {
         return
       }
       // start polling
       intervalId.current = setInterval(() => {
-        void fetchList({ handleLoadingState: false })
+        void fetchList()
       }, POLLING_INTERVAL)
 
       return () => {
@@ -134,8 +119,6 @@ const getAllExports = async ({
   return await cl.exports.list({
     pageNumber: state.currentPage,
     pageSize,
-    sort: state.sort
+    sort: { created_at: 'desc' }
   })
 }
-
-const statusForPolling: Array<Export['status']> = ['pending', 'in_progress']

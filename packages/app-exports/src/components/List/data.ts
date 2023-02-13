@@ -3,10 +3,7 @@ import { ListExportContextValue, ListExportContextState } from 'App'
 export const initialState: ListExportContextState = {
   isLoading: true,
   isPolling: false,
-  currentPage: 1,
-  sort: {
-    created_at: 'desc'
-  }
+  currentPage: 1
 }
 
 export const initialValues: ListExportContextValue = {

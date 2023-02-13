@@ -10,8 +10,8 @@ importers:
 
   packages/app-exports:
     specifiers:
-      '@commercelayer/app-elements-hook-form': 0.0.1-beta.16
-      '@commercelayer/core-app-elements': 0.0.1-beta.15
+      '@commercelayer/app-elements-hook-form': 0.0.1-beta.17
+      '@commercelayer/core-app-elements': 0.0.1-beta.17
       '@commercelayer/eslint-config-ts-react': ^0.1.4
       '@commercelayer/sdk': ^4.16.0
       '@testing-library/jest-dom': ^5.16.5
@@ -40,8 +40,8 @@ importers:
       wouter: ^2.9.0
       zod: 3.20.2
     dependencies:
-      '@commercelayer/app-elements-hook-form': 0.0.1-beta.16_2oxglh3jgnvxn7nldc3dbxs3w4
-      '@commercelayer/core-app-elements': 0.0.1-beta.15_l2iwz5gth2wupm5oruopphiyiq
+      '@commercelayer/app-elements-hook-form': 0.0.1-beta.17_ylzm324z2aaejkcvl4xfkc2fke
+      '@commercelayer/core-app-elements': 0.0.1-beta.17_l2iwz5gth2wupm5oruopphiyiq
       '@commercelayer/eslint-config-ts-react': 0.1.4_b7en3qybxvi7kqey6pvu247liq
       '@commercelayer/sdk': 4.20.0
       '@testing-library/jest-dom': 5.16.5
@@ -317,19 +317,19 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@commercelayer/app-elements-hook-form/0.0.1-beta.16_2oxglh3jgnvxn7nldc3dbxs3w4:
-    resolution: {integrity: sha512-mHot17Ng8JqI8gM07tHt5XssvTg0xgo0wwtq6yJKbNfHnOfuFv4f31sf5K87zweUAZi7wLWVUxVM6XqUOtCOPA==}
+  /@commercelayer/app-elements-hook-form/0.0.1-beta.17_ylzm324z2aaejkcvl4xfkc2fke:
+    resolution: {integrity: sha512-ZRx1JOhatSlV0Ivirp7HtHSU3eX0pIuh+SO2wauQWI6iSE71iV+wV/ASr2fN19tCkx+MC87aQtWf/CxFuuMfHA==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/core-app-elements': ^0.0.1-beta.14
       react-hook-form: ^7.x
     dependencies:
-      '@commercelayer/core-app-elements': 0.0.1-beta.15_l2iwz5gth2wupm5oruopphiyiq
+      '@commercelayer/core-app-elements': 0.0.1-beta.17_l2iwz5gth2wupm5oruopphiyiq
       react-hook-form: 7.42.1_react@18.2.0
     dev: false
 
-  /@commercelayer/core-app-elements/0.0.1-beta.15_l2iwz5gth2wupm5oruopphiyiq:
-    resolution: {integrity: sha512-IheVOx8QainKagYPD+KIPEzzePgGFQf7rZTSbZktnYq5fflRCUd0FQRnTcNoVWru4ArnMHs2ReZfvg/207gMgA==}
+  /@commercelayer/core-app-elements/0.0.1-beta.17_l2iwz5gth2wupm5oruopphiyiq:
+    resolution: {integrity: sha512-yehjjtdEiltFZMTeIEkbu9LNMfdYc0yf5P1M4k/JLPIHg7DjmLGSqfT10qFsAYjm1KXbMvcGfMvsWDzAiSyq6w==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/sdk': ^4.x

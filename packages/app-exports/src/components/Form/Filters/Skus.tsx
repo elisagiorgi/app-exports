@@ -1,4 +1,4 @@
-import { ResourceFinder } from '#components/ResourceFinder'
+import { ResourceFinder } from '#components/Form/ResourceFinder'
 import {
   InputDateRange,
   RadioButtons,
@@ -6,7 +6,7 @@ import {
   flatSelectValues,
   useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
-import { FilterValue, SkusFilters, SkusField } from 'Filters'
+import { FilterValue, SkusFilters, SkusField } from 'AppForm'
 import { useEffect, useState } from 'react'
 
 interface Props {
@@ -37,18 +37,6 @@ export function Skus({ onChange }: Props): JSX.Element | null {
 
   return (
     <div>
-      <Spacer bottom='6'>
-        <ResourceFinder
-          label='Markets'
-          resourceType='markets'
-          isMulti
-          onSelect={(values) => {
-            updateFilters('market_in', flatSelectValues(values))
-          }}
-          sdkClient={sdkClient}
-        />
-      </Spacer>
-
       <Spacer bottom='6'>
         <ResourceFinder
           label='SKU codes'
@@ -91,23 +79,23 @@ export function Skus({ onChange }: Props): JSX.Element | null {
 
       <InputDateRange
         label='Date range'
-        fromDate={parseFilterToDate(filters.created_at_gteq)}
+        value={[
+          parseFilterToDate(filters.created_at_gteq),
+          parseFilterToDate(filters.created_at_lteq)
+        ]}
+        onChange={([from, to]) => {
+          updateFilters('created_at_gteq', from?.toISOString() ?? null)
+          updateFilters('created_at_lteq', to?.toISOString() ?? null)
+        }}
         autoPlaceholder
-        onFromChange={(date) => {
-          updateFilters('created_at_gteq', date?.toISOString() ?? null)
-        }}
-        toDate={parseFilterToDate(filters.created_at_lteq)}
-        onToChange={(date) => {
-          updateFilters('created_at_lteq', date?.toISOString() ?? null)
-        }}
         isClearable
       />
     </div>
   )
 }
 
-function parseFilterToDate(filterValue?: FilterValue): Date | undefined {
+function parseFilterToDate(filterValue?: FilterValue): Date | null {
   return filterValue != null && typeof filterValue === 'string'
     ? new Date(filterValue)
-    : undefined
+    : null
 }

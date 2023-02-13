@@ -1,10 +1,10 @@
-import { ResourceFinder } from '#components/ResourceFinder'
+import { ResourceFinder } from '#components/Form/ResourceFinder'
 import {
   Spacer,
   flatSelectValues,
   useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
-import { FilterValue, PricesFilters, PricesField } from 'Filters'
+import { FilterValue, PricesFilters, PricesField } from 'AppForm'
 import { useEffect, useState } from 'react'
 
 interface Props {

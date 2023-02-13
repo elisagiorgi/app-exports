@@ -1,7 +1,7 @@
 {
   "name": "core-app-exports",
   "description": "A Commerce Layer Single Page Application to export resources with a nice GUI.",
-  "version": "0.0.1-stg.5",
+  "version": "0.0.1-stg.7",
   "private": true,
   "author": {
     "name": "Giuseppe Ciotola",
@@ -27,7 +27,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@commercelayer/core-app-elements": "0.0.1-beta.14",
+    "@commercelayer/app-elements-hook-form": "0.0.1-beta.16",
+    "@commercelayer/core-app-elements": "0.0.1-beta.15",
     "@commercelayer/eslint-config-ts-react": "^0.1.4",
     "@commercelayer/sdk": "^4.16.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -44,6 +45,7 @@
     "only-allow": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.42.1",
     "typescript": "4.9.4",
     "vite": "^4.0.4",
     "vitest": "^0.26.3",

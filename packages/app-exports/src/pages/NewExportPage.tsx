@@ -1,31 +1,23 @@
-import { isAvailableResource, showResourceNiceName } from '#data/resources'
-import { appRoutes } from '#data/routes'
+import { useState } from 'react'
+import { ApiError } from 'App'
 import {
   useTokenProvider,
   PageSkeleton,
   PageLayout,
   PageError,
-  InputToggleBox,
-  Label,
   Spacer,
   Button,
   Text,
-  InputToggleListBox,
-  Tabs,
-  Tab,
   EmptyState,
   useCoreSdkProvider
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute, Link } from 'wouter'
-import { RelationshipSelector } from '#components/RelationshipSelector'
-import { useEffect, useState } from 'react'
-import { ApiError } from 'App'
-import { Filters } from '#components/Filters'
-import { AllFilters } from 'Filters'
-import { resourcesWithFilters } from '#components/Filters/index'
-import { InputCode } from '#components/Filters/InputCode'
-import { validateRecordsCount } from '#utils/validateRecordsCount'
+import { isAvailableResource, showResourceNiceName } from '#data/resources'
+import { appRoutes } from '#data/routes'
+import { Form } from '#components/Form'
+import { validateRecordsCount } from '#components/Form/validateRecordsCount'
 import { parseApiError } from '#utils/apiErrors'
+import { ExportFormValues } from 'AppForm'
 
 const NewExportPage = (): JSX.Element | null => {
   const {
@@ -39,11 +31,6 @@ const NewExportPage = (): JSX.Element | null => {
 
   const [apiError, setApiError] = useState<ApiError[] | undefined>(undefined)
   const [isLoading, setIsLoading] = useState(false)
-
-  const [filters, setFilters] = useState<AllFilters>()
-  const [includes, setIncludes] = useState<string[]>([])
-  const [dryData, setDryData] = useState(false)
-  const [format, setFormat] = useState('json')
 
   const resourceType = params?.resourceType
   if (!isAvailableResource(resourceType)) {
@@ -75,7 +62,7 @@ const NewExportPage = (): JSX.Element | null => {
     )
   }
 
-  const createExportTask = async (): Promise<void> => {
+  const createExportTask = async (values: ExportFormValues): Promise<void> => {
     setApiError(undefined)
     setIsLoading(true)
 
@@ -83,14 +70,14 @@ const NewExportPage = (): JSX.Element | null => {
       await validateRecordsCount({
         sdkClient,
         resourceType,
-        filters
+        filters: values.filters
       })
       await sdkClient.exports.create({
         resource_type: resourceType,
-        dry_data: dryData,
-        includes,
-        format,
-        filters
+        dry_data: values.dryData,
+        includes: values.includes.map(({ value }) => String(value)),
+        format: values.format,
+        filters: values.filters
       })
       setLocation(appRoutes.list.makePath())
     } catch (error) {
@@ -101,15 +88,6 @@ const NewExportPage = (): JSX.Element | null => {
 
   const hasApiError = apiError != null && apiError.length > 0
 
-  useEffect(
-    function clearApiError() {
-      if (hasApiError) {
-        setApiError(undefined)
-      }
-    },
-    [filters, dryData, format]
-  )
-
   return (
     <PageLayout
       title={`Export ${showResourceNiceName(resourceType).toLowerCase()}`}
@@ -118,68 +96,19 @@ const NewExportPage = (): JSX.Element | null => {
         setLocation(appRoutes.selectResource.makePath())
       }}
     >
-      <Spacer bottom='6'>
-        <Tabs keepAlive>
-          {resourcesWithFilters.includes(resourceType) ? (
-            <Tab name='Filters'>
-              <Filters resourceType={resourceType} onChange={setFilters} />
-            </Tab>
-          ) : null}
-          <Tab name='Custom rules'>
-            <InputCode
-              onDataReady={setFilters}
-              onDataResetRequest={() => setFilters(undefined)}
-            />
-          </Tab>
-        </Tabs>
-      </Spacer>
-
       <Spacer bottom='14'>
-        <RelationshipSelector
+        <Form
           resourceType={resourceType}
-          onSelect={setIncludes}
-        />
-      </Spacer>
-
-      <Spacer bottom='14'>
-        <Label gap htmlFor='toggle-cleanup'>
-          More options
-        </Label>
-        <div>
-          <InputToggleBox
-            id='toggle-cleanup'
-            label='Dry data to make importable'
-            isChecked={dryData}
-            onToggle={setDryData}
-          />
-          <InputToggleListBox
-            id='format'
-            label='Export format'
-            value={format}
-            onSelect={setFormat}
-            options={[
-              { label: 'JSON', value: 'json' },
-              {
-                label: 'CSV',
-                value: 'csv'
-              }
-            ]}
-          />
-        </div>
-      </Spacer>
-
-      <Spacer bottom='14'>
-        <Button
-          variant='primary'
-          onClick={() => {
-            void createExportTask()
+          isLoading={isLoading}
+          defaultValues={{
+            dryData: false,
+            format: 'json',
+            includes: []
           }}
-          disabled={isLoading}
-        >
-          {isLoading
-            ? 'Exporting...'
-            : `Export ${showResourceNiceName(resourceType).toLowerCase()}`}
-        </Button>
+          onSubmit={(values) => {
+            void createExportTask(values)
+          }}
+        />
         {hasApiError ? (
           <div>
             {apiError.map((error, idx) => (

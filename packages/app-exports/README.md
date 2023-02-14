@@ -1,8 +1,8 @@
-# Commerce Core App Imports
+# Commerce Layer App Exports
 
-The Commerce Layer imports application (React) provides you with a simple GUI to handle import jobs.
+The Commerce Layer exports application (React) provides you with a simple GUI to handle [exports](https://docs.commercelayer.io/core/exporting-resources).
 
-![Commerce Layer Cart demo](./docs/imports.png)
+![exports list](https://user-images.githubusercontent.com/30926550/218775855-43bad3e9-8a31-499c-b89e-17db681f744d.png)
 
 ## What is Commerce Layer?
 
@@ -11,7 +11,7 @@ The Commerce Layer imports application (React) provides you with a simple GUI to
 ## Table of contents
 
 - [Getting started](#getting-started)
-- [Contributors guide](#contributors-guide)
+- [Environments](#environments)
 - [Help and support](#need-help)
 - [License](#license)
 
@@ -30,11 +30,17 @@ pnpm dev
 
 3. Configure your `/public/config.json` with the runtime configuration required
 
-4. Open [http://localhost:5173](http://localhost:5173) with your browser to see the result. You can use the following format to open the app: `http://localhost:5173/imports?accessToken=<your-access-token>`
+4. Open [http://localhost:5173](http://localhost:5173) with your browser to see the result. You can use the following format to open the app: `http://localhost:5173/?accessToken=<your-access-token>`
 
-## Contributors guide
+## Environments
 
-1. ...
+Configure environment variables in your `.env`, `.env.local` or `.env.production` file as followings:
+
+| Var name            | Sample vaule | Description                                                                                                                                                                                                                                                          |
+| ------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| PUBLIC_TOKEN_KIND   | integration  | (Optional) Defines the kind of token to be used and validated. <br />Possible values: `integration` or `webapp`. <br />Default value is `webapp`.                                                                                                                    |
+| PUBLIC_PROJECT_PATH | exports      | (Optional) Defines the base root path where the app will be served.<br/> `https://<slug>.commercelayer.app/<PUBLIC_PROJECT_PATH>`<br /> It's used at build time to reference assets folder and at runtime as base router path. <br />No leading or trailing slashes. |
+| PUBLIC_ENABLE_MOCKS | false        | (Optional) Enables mock server when set to `true`.<br /> Mocks are defined in `./src/mocks/handlers.ts`                                                                                                                                                              |
 
 ## Need help?
 

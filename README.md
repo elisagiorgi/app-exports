@@ -1,1 +1,1 @@
-# core-app-exports
+./packages/app-exports/README.md

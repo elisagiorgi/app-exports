@@ -27,7 +27,7 @@ export function RelationshipSelector({
       name='includes'
       isClearable
       isMulti
-      helperText='List of relationships to be included in the export.'
+      hint={{ text: 'List of relationships to be included in the export.' }}
       label='Include'
     />
   )

@@ -1,12 +1,13 @@
 declare module 'AppForm' {
   import { SelectValue } from '@commercelayer/core-app-elements'
 
+  type ExportFormat = 'csv' | 'json'
+
   type FilterValue = string | number | Array<string | number> | null | boolean
 
   type Filters<FiltrableField extends string> = Partial<
     Record<FiltrableField, FilterValue>
   >
-  type AllFilters = FilterOrders | FilterOrders
 
   // orders
   type OrdersFilters = Filters<OrdersField>
@@ -28,7 +29,7 @@ declare module 'AppForm' {
   type PricesFilters = Filters<PricesField>
   type PricesField = 'sku_code_in' | 'price_list_id_eq'
 
-  type ExportFormat = 'csv' | 'json'
+  type AllFilters = OrdersFilters & SkusFilters & PricesFilters
 
   interface ExportFormValues {
     dryData: boolean

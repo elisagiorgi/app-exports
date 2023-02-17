@@ -19,7 +19,7 @@ export function ExportReport(): JSX.Element | null {
     <Report
       items={[
         {
-          label: 'Records exported',
+          label: getStatusLabel(data),
           count: <ExportCount type='records_count' />,
           linkUrl: getSourceFileUrl(data),
           linkLabel
@@ -27,6 +27,22 @@ export function ExportReport(): JSX.Element | null {
       ]}
     />
   )
+}
+
+function getStatusLabel(data: Export): string {
+  switch (data.status) {
+    case 'completed':
+      return 'Records exported'
+
+    case 'pending':
+      return 'Exporting records'
+
+    case 'in_progress':
+      return 'Exporting records'
+
+    default:
+      return 'Records'
+  }
 }
 
 function getSourceFileUrl(job?: Export): string | undefined {

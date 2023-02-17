@@ -65,8 +65,12 @@ const DetailsPage = (): JSX.Element | null => {
             mode={mode}
             description={
               <ExportDate
-                atType='completed_at'
-                prefixText='Exported on '
+                atType={
+                  data.status === 'completed' ? 'completed_at' : 'started_at'
+                }
+                prefixText={
+                  data.status === 'completed' ? 'Exported on ' : 'Started on'
+                }
                 includeTime
               />
             }

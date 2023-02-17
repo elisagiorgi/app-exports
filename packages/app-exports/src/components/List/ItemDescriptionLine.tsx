@@ -1,4 +1,4 @@
-import { formatDate } from '@commercelayer/core-app-elements'
+import { formatDate, useTokenProvider } from '@commercelayer/core-app-elements'
 import { Export } from '@commercelayer/sdk'
 
 interface Props {
@@ -6,6 +6,10 @@ interface Props {
 }
 
 export function DescriptionLine({ job }: Props): JSX.Element {
+  const {
+    settings: { timezone }
+  } = useTokenProvider()
+
   return (
     <>
       {job.status === 'pending' ? (
@@ -13,9 +17,11 @@ export function DescriptionLine({ job }: Props): JSX.Element {
       ) : job.status === 'in_progress' ? (
         <div>In progress</div>
       ) : job.interrupted_at != null ? (
-        <div>Export failed on {formatDate(job.interrupted_at)}</div>
+        <div>
+          Export failed on {formatDate(job.interrupted_at, false, timezone)}
+        </div>
       ) : job.status === 'completed' ? (
-        <div>Exported on {formatDate(job.completed_at)}</div>
+        <div>Exported on {formatDate(job.completed_at, false, timezone)}</div>
       ) : (
         '-'
       )}

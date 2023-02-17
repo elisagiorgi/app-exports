@@ -1,6 +1,6 @@
 import { QueryParamsList } from '@commercelayer/sdk'
 import { AllFilters } from 'AppForm'
-import { endOfDay, startOfDay, parseISO } from 'date-fns'
+import { endOfDay, startOfDay } from 'date-fns'
 
 export function adaptFormFiltersToSdk(
   filters?: AllFilters

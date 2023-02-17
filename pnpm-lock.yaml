@@ -22,6 +22,7 @@ importers:
       '@types/testing-library__jest-dom': ^5.14.5
       '@vitejs/plugin-react': ^3.0.0
       date-fns: ^2.29.3
+      date-fns-tz: ^2.0.0
       dotenv: ^16.0.1
       eslint: ^8.23.1
       jsdom: ^20.0.0
@@ -53,6 +54,7 @@ importers:
       '@types/testing-library__jest-dom': 5.14.5
       '@vitejs/plugin-react': 3.0.0_vite@4.0.4
       date-fns: 2.29.3
+      date-fns-tz: 2.0.0_date-fns@2.29.3
       eslint: 8.28.0
       jsdom: 20.0.3
       jwt-decode: 3.1.2
@@ -3319,6 +3321,14 @@ packages:
       abab: 2.0.6
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
+    dev: false
+
+  /date-fns-tz/2.0.0_date-fns@2.29.3:
+    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
+    peerDependencies:
+      date-fns: '>=2.0.0'
+    dependencies:
+      date-fns: 2.29.3
     dev: false
 
   /date-fns/2.29.3:

@@ -23,7 +23,7 @@ import { adaptFormFiltersToSdk } from '#components/Form/Filters/utils'
 const NewExportPage = (): JSX.Element | null => {
   const {
     canUser,
-    settings: { mode }
+    settings: { mode, timezone }
   } = useTokenProvider()
   const { sdkClient } = useCoreSdkProvider()
 
@@ -68,7 +68,7 @@ const NewExportPage = (): JSX.Element | null => {
     setIsLoading(true)
 
     try {
-      const filters = adaptFormFiltersToSdk(values.filters)
+      const filters = adaptFormFiltersToSdk(values.filters, timezone)
       await validateRecordsCount({
         sdkClient,
         resourceType,

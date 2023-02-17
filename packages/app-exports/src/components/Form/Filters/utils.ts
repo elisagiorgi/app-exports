@@ -1,9 +1,11 @@
 import { QueryParamsList } from '@commercelayer/sdk'
 import { AllFilters } from 'AppForm'
-import { endOfDay, startOfDay, format } from 'date-fns'
+import { endOfDay, startOfDay } from 'date-fns'
+import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz'
 
 export function adaptFormFiltersToSdk(
-  filters?: AllFilters
+  filters?: AllFilters,
+  timezone?: string
 ): QueryParamsList['filters'] {
   if (filters == null) {
     return
@@ -25,12 +27,20 @@ export function adaptFormFiltersToSdk(
 
     // dates `grater than` should always have 00:00:00 time
     if (filterKey.includes('at_gteq') && typeof value === 'string') {
-      value = isoDateToDayEdge(value, 'startOfTheDay')
+      value = isoDateToDayEdge({
+        isoString: value,
+        edge: 'startOfTheDay',
+        timezone
+      })
     }
 
     // dates `lower than` should always have 23:59:59 time
     if (filterKey.includes('at_lteq') && typeof value === 'string') {
-      value = isoDateToDayEdge(value, 'endOfTheDay')
+      value = isoDateToDayEdge({
+        isoString: value,
+        edge: 'endOfTheDay',
+        timezone
+      })
     }
 
     // parsing string as boolean
@@ -51,22 +61,29 @@ export function adaptFormFiltersToSdk(
 }
 
 type IsoDate = string
-export function isoDateToDayEdge(
-  isoString: IsoDate,
+export function isoDateToDayEdge({
+  isoString,
+  edge,
+  timezone = 'UTC'
+}: {
+  isoString: IsoDate
   edge: 'startOfTheDay' | 'endOfTheDay'
-): string | undefined {
+  timezone?: string
+}): string | undefined {
   try {
     const date = new Date(isoString)
     if (date == null || isoString == null) {
       return undefined
     }
 
+    const zonedDate = utcToZonedTime(date, timezone)
+
     if (edge === 'startOfTheDay') {
-      return format(startOfDay(date), "yyyy-MM-dd'T'HH:mm:ss.000'Z'")
+      return zonedTimeToUtc(startOfDay(zonedDate), timezone).toISOString()
     }
 
     if (edge === 'endOfTheDay') {
-      return format(endOfDay(date), "yyyy-MM-dd'T'HH:mm:ss.999'Z'")
+      return zonedTimeToUtc(endOfDay(zonedDate), timezone).toISOString()
     }
 
     return undefined

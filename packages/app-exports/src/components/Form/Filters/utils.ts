@@ -1,6 +1,6 @@
 import { QueryParamsList } from '@commercelayer/sdk'
 import { AllFilters } from 'AppForm'
-import { endOfDay, startOfDay } from 'date-fns'
+import { endOfDay, startOfDay, format } from 'date-fns'
 
 export function adaptFormFiltersToSdk(
   filters?: AllFilters
@@ -62,11 +62,11 @@ export function isoDateToDayEdge(
     }
 
     if (edge === 'startOfTheDay') {
-      return startOfDay(date).toISOString() ?? undefined
+      return format(startOfDay(date), "yyyy-MM-dd'T'HH:mm:ss.000'Z'")
     }
 
     if (edge === 'endOfTheDay') {
-      return endOfDay(date).toISOString() ?? undefined
+      return format(endOfDay(date), "yyyy-MM-dd'T'HH:mm:ss.999'Z'")
     }
 
     return undefined

@@ -18,6 +18,7 @@ import { Form } from '#components/Form'
 import { validateRecordsCount } from '#components/Form/validateRecordsCount'
 import { parseApiError } from '#utils/apiErrors'
 import { ExportFormValues } from 'AppForm'
+import { adaptFormFiltersToSdk } from '#components/Form/Filters/utils'
 
 const NewExportPage = (): JSX.Element | null => {
   const {
@@ -67,17 +68,18 @@ const NewExportPage = (): JSX.Element | null => {
     setIsLoading(true)
 
     try {
+      const filters = adaptFormFiltersToSdk(values.filters)
       await validateRecordsCount({
         sdkClient,
         resourceType,
-        filters: values.filters
+        filters
       })
       await sdkClient.exports.create({
         resource_type: resourceType,
         dry_data: values.dryData,
         includes: values.includes.map(({ value }) => String(value)),
         format: values.format,
-        filters: values.filters
+        filters
       })
       setLocation(appRoutes.list.makePath())
     } catch (error) {

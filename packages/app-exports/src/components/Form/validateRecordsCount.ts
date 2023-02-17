@@ -1,6 +1,5 @@
-import { CommerceLayerClient } from '@commercelayer/sdk'
+import { CommerceLayerClient, QueryParamsList } from '@commercelayer/sdk'
 import { AllowedResourceType } from 'App'
-import { AllFilters } from 'AppForm'
 
 const MAX_EXPORTABLE_RECORDS = 10_000
 
@@ -11,7 +10,7 @@ export async function validateRecordsCount({
 }: {
   sdkClient: CommerceLayerClient
   resourceType: AllowedResourceType
-  filters: AllFilters
+  filters?: QueryParamsList['filters']
 }): Promise<void> {
   const list = await sdkClient[resourceType].list({ filters })
   if (list.meta.recordCount > MAX_EXPORTABLE_RECORDS) {

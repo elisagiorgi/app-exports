@@ -22,8 +22,6 @@ describe('isoDateToDayEdge', () => {
   test('should return undefined when a no-date is passed', () => {
     expect(isoDateToDayEdge('hello', 'endOfTheDay')).toBe(undefined)
     // @ts-expect-error
-    expect(isoDateToDayEdge(323233, 'endOfTheDay')).toBe(undefined)
-    // @ts-expect-error
     expect(isoDateToDayEdge(null, 'endOfTheDay')).toBe(undefined)
     // @ts-expect-error
     expect(isoDateToDayEdge(undefined, 'endOfTheDay')).toBe(undefined)

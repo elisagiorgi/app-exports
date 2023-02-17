@@ -56,8 +56,8 @@ export function isoDateToDayEdge(
   edge: 'startOfTheDay' | 'endOfTheDay'
 ): string | undefined {
   try {
-    const date = parseISO(isoString)
-    if (date == null) {
+    const date = new Date(isoString)
+    if (date == null || isoString == null) {
       return undefined
     }
 
@@ -69,7 +69,7 @@ export function isoDateToDayEdge(
       return endOfDay(date).toISOString() ?? undefined
     }
 
-    return isoString
+    return undefined
   } catch {
     return undefined
   }

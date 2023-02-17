@@ -27,7 +27,7 @@ interface Props {
 }
 
 export function Form({
-  isLoading = false,
+  isLoading,
   resourceType,
   defaultValues,
   onSubmit
@@ -95,7 +95,7 @@ export function Form({
       </Spacer>
 
       <Button variant='primary' type='submit' disabled={isLoading}>
-        {isLoading
+        {isLoading === true
           ? 'Exporting...'
           : `Export ${showResourceNiceName(resourceType).toLowerCase()}`}
       </Button>

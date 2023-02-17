@@ -1,5 +1,6 @@
 import { QueryParamsList } from '@commercelayer/sdk'
 import { AllFilters } from 'AppForm'
+import { endOfDay, startOfDay, parseISO } from 'date-fns'
 
 export function adaptFormFiltersToSdk(
   filters?: AllFilters
@@ -54,22 +55,22 @@ export function isoDateToDayEdge(
   isoString: IsoDate,
   edge: 'startOfTheDay' | 'endOfTheDay'
 ): string | undefined {
-  const isoDateRegex =
-    /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/
+  try {
+    const date = parseISO(isoString)
+    if (date == null) {
+      return undefined
+    }
 
-  if (!isoDateRegex.test(isoString)) {
+    if (edge === 'startOfTheDay') {
+      return startOfDay(date).toISOString() ?? undefined
+    }
+
+    if (edge === 'endOfTheDay') {
+      return endOfDay(date).toISOString() ?? undefined
+    }
+
+    return isoString
+  } catch {
     return undefined
   }
-
-  const date = isoString.split('T')[0]
-
-  if (edge === 'startOfTheDay') {
-    return `${date}T00:00:00.000Z`
-  }
-
-  if (edge === 'endOfTheDay') {
-    return `${date}T23:59:59.999Z`
-  }
-
-  return date
 }

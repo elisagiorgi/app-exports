@@ -29,7 +29,7 @@ function App(): JSX.Element {
             currentApp='exports'
             clientKind={import.meta.env.PUBLIC_TOKEN_KIND ?? 'webapp'}
             domain={domain ?? ''}
-            reauthenticateOnInvalidAuth
+            reauthenticateOnInvalidAuth={!isDev}
             loadingElement={<PageSkeleton />}
             devMode={isDev}
           >

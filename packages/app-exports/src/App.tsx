@@ -12,7 +12,6 @@ import {
 import { ResourceSelectorPage } from './pages/ResourceSelectorPage'
 import DetailsPage from './pages/DetailsPage'
 import NewExportPage from './pages/NewExportPage'
-import { makeReAuthenticationUrl } from '#utils/reauthUrl'
 
 const isDev = Boolean(import.meta.env.DEV)
 
@@ -30,14 +29,7 @@ function App(): JSX.Element {
             currentApp='exports'
             clientKind={import.meta.env.PUBLIC_TOKEN_KIND ?? 'webapp'}
             domain={domain ?? ''}
-            onInvalidAuth={({ reason, dashboardUrl }) => {
-              if (!isDev) {
-                console.warn('redirect to dashboard: ', reason)
-                window.location.href =
-                  makeReAuthenticationUrl(dashboardUrl, 'exports') ??
-                  dashboardUrl
-              }
-            }}
+            reauthenticateOnInvalidAuth
             loadingElement={<PageSkeleton />}
             devMode={isDev}
           >

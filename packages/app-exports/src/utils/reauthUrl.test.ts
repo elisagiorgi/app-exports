@@ -1,5 +1,7 @@
 import { makeReAuthenticationUrl } from './reauthUrl'
 
+const dashboardUrl = 'https://dashboard.commercelayer.io/test/demo-store'
+
 describe('makeReAuthenticationUrl', () => {
   const { location } = window
   beforeAll(function clearLocation() {
@@ -19,13 +21,18 @@ describe('makeReAuthenticationUrl', () => {
     window.location.origin = 'https://demo-store.commercelayer.app'
     window.location.pathname = '/exports/new'
 
-    expect(
-      makeReAuthenticationUrl(
-        'https://dashboard.commercelayer.io/test/demo-store',
-        'exports'
-      )
-    ).toBe(
+    expect(makeReAuthenticationUrl(dashboardUrl, 'exports')).toBe(
       'https://dashboard.commercelayer.io/test/demo-store/hub/exports/authenticate?redirect_to=https://demo-store.commercelayer.app/exports/new'
+    )
+  })
+
+  test('should return valid url when current pathname is empty', () => {
+    // @ts-expect-error
+    window.location.origin = 'https://demo-store.commercelayer.app'
+    window.location.pathname = '/'
+
+    expect(makeReAuthenticationUrl(dashboardUrl, 'exports')).toBe(
+      'https://dashboard.commercelayer.io/test/demo-store/hub/exports/authenticate?redirect_to=https://demo-store.commercelayer.app/'
     )
   })
 
@@ -35,5 +42,13 @@ describe('makeReAuthenticationUrl', () => {
     window.location.pathname = '/exports/new'
 
     expect(makeReAuthenticationUrl('broken-url', 'exports')).toBe(undefined)
+  })
+
+  test('should return undefined when app name is invalid', () => {
+    // @ts-expect-error
+    window.location.origin = 'https://demo-store.commercelayer.app'
+    window.location.pathname = '/exports/new'
+
+    expect(makeReAuthenticationUrl(dashboardUrl, '')).toBe(undefined)
   })
 })

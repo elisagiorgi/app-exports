@@ -2,6 +2,9 @@ export function makeReAuthenticationUrl(
   dashboardUrl: string,
   appName: string
 ): string | undefined {
+  if (appName == null || appName === '') {
+    return undefined
+  }
   try {
     const baseUrl = new URL(dashboardUrl).toString() // will parse and remove trailing slash
     const currentAppUrl = `${window.location.origin}${window.location.pathname}`

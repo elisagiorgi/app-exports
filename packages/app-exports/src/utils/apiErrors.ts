@@ -8,7 +8,8 @@ export function parseApiError(err: any): ApiError[] {
   } else {
     return [
       {
-        title: err.message ?? 'Could not create the export task'
+        title: err.message ?? 'Could not create the export task',
+        detail: err.message ?? 'Could not create the export task'
       }
     ]
   }

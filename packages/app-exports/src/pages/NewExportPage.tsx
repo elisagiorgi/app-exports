@@ -7,9 +7,9 @@ import {
   PageError,
   Spacer,
   Button,
-  Text,
   EmptyState,
-  useCoreSdkProvider
+  useCoreSdkProvider,
+  InputFeedback
 } from '@commercelayer/core-app-elements'
 import { useLocation, useRoute, Link } from 'wouter'
 import { isAvailableResource, showResourceNiceName } from '#data/resources'
@@ -30,7 +30,7 @@ const NewExportPage = (): JSX.Element | null => {
   const [_match, params] = useRoute(appRoutes.newExport.path)
   const [_location, setLocation] = useLocation()
 
-  const [apiError, setApiError] = useState<ApiError[] | undefined>(undefined)
+  const [apiError, setApiError] = useState<ApiError[] | undefined>()
   const [isLoading, setIsLoading] = useState(false)
 
   const resourceType = params?.resourceType
@@ -112,13 +112,15 @@ const NewExportPage = (): JSX.Element | null => {
           }}
         />
         {hasApiError ? (
-          <div>
+          <Spacer top='2'>
             {apiError.map((error, idx) => (
-              <Text variant='danger' key={idx}>
-                {error.detail}
-              </Text>
+              <InputFeedback
+                variant='danger'
+                key={idx}
+                message={error.detail}
+              />
             ))}
-          </div>
+          </Spacer>
         ) : null}
       </Spacer>
     </PageLayout>

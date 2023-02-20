@@ -115,7 +115,7 @@ const NewExportPage = (): JSX.Element | null => {
           <div>
             {apiError.map((error, idx) => (
               <Text variant='danger' key={idx}>
-                {error.title}
+                {error.detail}
               </Text>
             ))}
           </div>

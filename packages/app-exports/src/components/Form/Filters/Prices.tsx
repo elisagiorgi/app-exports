@@ -3,7 +3,7 @@ import {
   Spacer,
   flatSelectValues,
   useCoreSdkProvider
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { FilterValue, PricesFilters, PricesField } from 'AppForm'
 import { useEffect, useState } from 'react'
 

@@ -13,7 +13,7 @@ import {
   EmptyState,
   useTokenProvider,
   useCoreSdkProvider
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { DescriptionLine } from '#components/List/ItemDescriptionLine'
 
 function ListPage(): JSX.Element {

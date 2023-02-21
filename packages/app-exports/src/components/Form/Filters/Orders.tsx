@@ -5,7 +5,7 @@ import {
   Spacer,
   flatSelectValues,
   useCoreSdkProvider
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { OrdersField, OrdersFilters, FilterValue } from 'AppForm'
 import { useEffect, useState } from 'react'
 

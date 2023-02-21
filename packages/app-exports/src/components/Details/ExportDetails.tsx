@@ -2,7 +2,7 @@ import {
   ListDetailsItem,
   ListDetails,
   BlockCode
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { useExportDetailsContext } from './Provider'
 import { StatusBadge } from './StatusBadge'
 

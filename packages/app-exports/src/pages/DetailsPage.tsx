@@ -11,7 +11,7 @@ import {
   Button,
   EmptyState,
   useCoreSdkProvider
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { useLocation, useRoute, Link } from 'wouter'
 import { ExportReport } from '#components/Details/ExportReport'
 import { ExportDetails } from '#components/Details/ExportDetails'

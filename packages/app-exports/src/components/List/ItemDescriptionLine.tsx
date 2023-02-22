@@ -18,10 +18,13 @@ export function DescriptionLine({ job }: Props): JSX.Element {
         <div>In progress</div>
       ) : job.interrupted_at != null ? (
         <div>
-          Export failed on {formatDate(job.interrupted_at, false, timezone)}
+          Export failed on{' '}
+          {formatDate({ isoDate: job.interrupted_at, timezone })}
         </div>
       ) : job.status === 'completed' ? (
-        <div>Exported on {formatDate(job.completed_at, false, timezone)}</div>
+        <div>
+          Exported on {formatDate({ isoDate: job.completed_at, timezone })}
+        </div>
       ) : (
         '-'
       )}

@@ -26,7 +26,12 @@ export function ExportDate({
   }
   return (
     <span {...props}>
-      {prefixText} {formatDate(data[atType], includeTime, timezone)}
+      {prefixText}{' '}
+      {formatDate({
+        isoDate: data[atType],
+        includeTime,
+        timezone
+      })}
     </span>
   )
 }

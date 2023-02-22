@@ -1,5 +1,5 @@
 import { useExportDetailsContext } from '#components/Details/Provider'
-import { formatDate, useTokenProvider } from '@commercelayer/core-app-elements'
+import { formatDate, useTokenProvider } from '@commercelayer/app-elements'
 
 interface Props extends React.HTMLAttributes<HTMLSpanElement> {
   atType: 'started_at' | 'completed_at' | 'interrupted_at'

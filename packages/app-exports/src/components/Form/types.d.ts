@@ -1,5 +1,5 @@
 declare module 'AppForm' {
-  import { SelectValue } from '@commercelayer/core-app-elements'
+  import { SelectValue } from '@commercelayer/app-elements'
 
   type ExportFormat = 'csv' | 'json'
 
@@ -12,7 +12,7 @@ declare module 'AppForm' {
   // orders
   type OrdersFilters = Filters<OrdersField>
   type OrdersField =
-    | 'market_in'
+    | 'market_id_in'
     | 'status_in'
     | 'created_at_gteq'
     | 'created_at_lteq'

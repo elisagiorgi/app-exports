@@ -8,7 +8,7 @@ import {
   TokenProvider,
   ErrorBoundary,
   CoreSdkProvider
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { ResourceSelectorPage } from './pages/ResourceSelectorPage'
 import DetailsPage from './pages/DetailsPage'
 import NewExportPage from './pages/NewExportPage'

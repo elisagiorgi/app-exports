@@ -1,13 +1,7 @@
 import { AllowedResourceType } from 'App'
 import { ExportFormValues } from 'AppForm'
 import { showResourceNiceName } from '#data/resources'
-import {
-  Label,
-  Spacer,
-  Button,
-  Tabs,
-  Tab
-} from '@commercelayer/core-app-elements'
+import { Label, Spacer, Button, Tabs, Tab } from '@commercelayer/app-elements'
 import { RelationshipSelector } from './RelationshipSelector'
 import { Filters } from '#components/Form/Filters'
 import { resourcesWithFilters } from '#components/Form/Filters/index'

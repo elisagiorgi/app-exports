@@ -1,4 +1,4 @@
-import { formatDate, useTokenProvider } from '@commercelayer/core-app-elements'
+import { formatDate, useTokenProvider } from '@commercelayer/app-elements'
 import { Export } from '@commercelayer/sdk'
 
 interface Props {

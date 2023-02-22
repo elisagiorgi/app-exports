@@ -10,7 +10,7 @@ import {
   EmptyState,
   useCoreSdkProvider,
   InputFeedback
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { useLocation, useRoute, Link } from 'wouter'
 import { isAvailableResource, showResourceNiceName } from '#data/resources'
 import { appRoutes } from '#data/routes'

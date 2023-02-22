@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { fetchInitialResources, fetchResourcesByHint } from './utils'
-import { InputSelect, Label } from '@commercelayer/core-app-elements'
+import { InputSelect, Label } from '@commercelayer/app-elements'
 import {
   PossibleSelectValue,
   SelectValue
-} from '@commercelayer/core-app-elements/dist/ui/forms/InputSelect'
+} from '@commercelayer/app-elements/dist/ui/forms/InputSelect'
 import { SearchParams } from '#components/Form/ResourceFinder/utils'
 
 interface Props extends SearchParams {

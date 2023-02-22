@@ -5,7 +5,7 @@ import {
   Spacer,
   flatSelectValues,
   useCoreSdkProvider
-} from '@commercelayer/core-app-elements'
+} from '@commercelayer/app-elements'
 import { OrdersField, OrdersFilters, FilterValue } from 'AppForm'
 import { useEffect, useState } from 'react'
 
@@ -43,7 +43,7 @@ export function Orders({ onChange }: Props): JSX.Element | null {
           resourceType='markets'
           isMulti
           onSelect={(values) => {
-            updateFilters('market_in', flatSelectValues(values))
+            updateFilters('market_id_in', flatSelectValues(values))
           }}
           sdkClient={sdkClient}
         />

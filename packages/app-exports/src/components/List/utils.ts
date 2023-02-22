@@ -1,4 +1,4 @@
-import { StatusUI } from '@commercelayer/core-app-elements/dist/ui/atoms/StatusIcon'
+import { StatusUI } from '@commercelayer/app-elements/dist/ui/atoms/StatusIcon'
 import { Export } from '@commercelayer/sdk'
 import { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
 

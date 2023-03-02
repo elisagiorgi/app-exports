@@ -2,7 +2,11 @@ import { SelectValue } from '@commercelayer/app-elements/dist/ui/forms/InputSele
 import { CommerceLayerClient } from '@commercelayer/sdk'
 import { ListResponse, Resource } from '@commercelayer/sdk/lib/cjs/resource'
 
-export type SearchableResource = 'markets' | 'skus' | 'price_lists'
+export type SearchableResource =
+  | 'markets'
+  | 'skus'
+  | 'price_lists'
+  | 'shipping_categories'
 
 export interface SearchParams {
   /**

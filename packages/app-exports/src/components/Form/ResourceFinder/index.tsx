@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-import { fetchInitialResources, fetchResourcesByHint } from './utils'
+import { SearchParams } from '#components/Form/ResourceFinder/utils'
 import { InputSelect, Label } from '@commercelayer/app-elements'
 import {
   PossibleSelectValue,
   SelectValue
 } from '@commercelayer/app-elements/dist/ui/forms/InputSelect'
-import { SearchParams } from '#components/Form/ResourceFinder/utils'
+import { useEffect, useState } from 'react'
+import { fetchInitialResources, fetchResourcesByHint } from './utils'
 
 interface Props extends SearchParams {
   /**
@@ -28,7 +28,7 @@ interface Props extends SearchParams {
 
 export function ResourceFinder({
   label,
-  placeholder,
+  placeholder = 'Type to search or select from the list...',
   resourceType,
   sdkClient,
   isMulti,

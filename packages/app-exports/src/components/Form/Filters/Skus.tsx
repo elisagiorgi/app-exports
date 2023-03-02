@@ -6,7 +6,7 @@ import {
   flatSelectValues,
   useCoreSdkProvider
 } from '@commercelayer/app-elements'
-import { FilterValue, SkusFilters, SkusField } from 'AppForm'
+import { FilterValue, SkusField, SkusFilters } from 'AppForm'
 import { useEffect, useState } from 'react'
 
 interface Props {
@@ -49,6 +49,21 @@ export function Skus({ onChange }: Props): JSX.Element | null {
           fields={['id', 'name', 'code']}
           fieldForLabel='code'
           fieldForValue='code'
+        />
+      </Spacer>
+
+      <Spacer bottom='6'>
+        <ResourceFinder
+          label='Shipping categories'
+          resourceType='shipping_categories'
+          isMulti
+          onSelect={(values) => {
+            updateFilters('shipping_category_id_in', flatSelectValues(values))
+          }}
+          sdkClient={sdkClient}
+          fields={['id', 'name']}
+          fieldForLabel='name'
+          fieldForValue='id'
         />
       </Spacer>
 

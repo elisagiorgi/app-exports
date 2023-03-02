@@ -24,6 +24,7 @@ declare module 'AppForm' {
     | 'created_at_gteq'
     | 'created_at_lteq'
     | 'do_not_ship_false' // is shippable
+    | 'shipping_category_id_in'
 
   // prices
   type PricesFilters = Filters<PricesField>

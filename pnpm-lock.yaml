@@ -40,7 +40,6 @@ importers:
       vite: ^4.0.4
       vitest: ^0.26.3
       wouter: ^2.9.0
-      zod: 3.20.2
     dependencies:
       '@commercelayer/app-elements': 0.0.3_dgfcqji2k54fxvesjex4pex2eu
       '@commercelayer/app-elements-hook-form': 0.0.3_2zzqva2l6yrgearia7oym36gfa
@@ -67,7 +66,6 @@ importers:
       vite: 4.0.4_@types+node@18.0.1
       vitest: 0.26.3_jsdom@20.0.3
       wouter: 2.9.0_react@18.2.0
-      zod: 3.20.2
     devDependencies:
       dotenv: 16.0.3
       prettier: 2.8.0
@@ -8392,8 +8390,4 @@ packages:
       validator: 13.9.0
     optionalDependencies:
       commander: 9.5.0
-    dev: false
-
-  /zod/3.20.2:
-    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
     dev: false

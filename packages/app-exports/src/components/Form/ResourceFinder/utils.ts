@@ -7,6 +7,7 @@ export type SearchableResource =
   | 'skus'
   | 'price_lists'
   | 'shipping_categories'
+  | 'stock_locations'
 
 export interface SearchParams {
   /**

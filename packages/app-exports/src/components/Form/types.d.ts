@@ -30,7 +30,14 @@ declare module 'AppForm' {
   type PricesFilters = Filters<PricesField>
   type PricesField = 'sku_code_in' | 'price_list_id_eq'
 
-  type AllFilters = OrdersFilters & SkusFilters & PricesFilters
+  // stock_items
+  type StockItemsFilters = Filters<StockItemsField>
+  type StockItemsField = 'stock_location_id_in'
+
+  type AllFilters = OrdersFilters &
+    SkusFilters &
+    PricesFilters &
+    StockItemsFilters
 
   interface ExportFormValues {
     dryData: boolean

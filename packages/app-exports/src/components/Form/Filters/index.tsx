@@ -3,13 +3,14 @@ import { Orders } from './Orders'
 import { Skus } from './Skus'
 import { Prices } from './Prices'
 import { AllFilters } from 'AppForm'
+import { StockItems } from './StockItems'
 
 interface Props {
   resourceType: AllowedResourceType
   onChange: (filters: AllFilters) => void
 }
 
-export const resourcesWithFilters = ['orders', 'skus', 'prices']
+export const resourcesWithFilters = ['orders', 'skus', 'prices', 'stock_items']
 
 export function Filters({ resourceType, onChange }: Props): JSX.Element | null {
   if (resourceType === 'orders') {
@@ -22,6 +23,10 @@ export function Filters({ resourceType, onChange }: Props): JSX.Element | null {
 
   if (resourceType === 'prices') {
     return <Prices onChange={onChange} />
+  }
+
+  if (resourceType === 'stock_items') {
+    return <StockItems onChange={onChange} />
   }
 
   return null

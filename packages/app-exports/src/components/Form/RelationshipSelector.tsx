@@ -29,6 +29,7 @@ export function RelationshipSelector({
       isMulti
       hint={{ text: 'List of relationships to be included in the export.' }}
       label='Include'
+      pathToValue='value'
     />
   )
 }

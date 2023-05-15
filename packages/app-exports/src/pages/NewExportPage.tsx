@@ -78,7 +78,7 @@ const NewExportPage = (): JSX.Element | null => {
       await sdkClient.exports.create({
         resource_type: resourceType,
         dry_data: values.dryData,
-        includes: values.includes.map(({ value }) => String(value)),
+        includes: values.includes,
         format: values.format,
         filters
       })

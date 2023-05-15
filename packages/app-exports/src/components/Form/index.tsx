@@ -1,5 +1,5 @@
-import { AllowedResourceType } from 'App'
-import { ExportFormValues } from 'AppForm'
+import { type AllowedResourceType } from 'App'
+import { type ExportFormValues } from 'AppForm'
 import { showResourceNiceName } from '#data/resources'
 import { Label, Spacer, Button, Tabs, Tab } from '@commercelayer/app-elements'
 import { RelationshipSelector } from './RelationshipSelector'
@@ -52,7 +52,9 @@ export function Form({
               render={({ field: { onChange } }) => (
                 <InputCode
                   onDataReady={onChange}
-                  onDataResetRequest={() => onChange(undefined)}
+                  onDataResetRequest={() => {
+                    onChange(undefined)
+                  }}
                 />
               )}
             />

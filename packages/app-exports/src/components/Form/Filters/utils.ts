@@ -1,5 +1,5 @@
-import { QueryParamsList } from '@commercelayer/sdk'
-import { AllFilters } from 'AppForm'
+import { type QueryParamsList } from '@commercelayer/sdk'
+import { type AllFilters } from 'AppForm'
 import { endOfDay, startOfDay } from 'date-fns'
 import { utcToZonedTime, zonedTimeToUtc } from 'date-fns-tz'
 

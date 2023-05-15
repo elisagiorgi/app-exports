@@ -27,8 +27,9 @@ export function ExportDetails(): JSX.Element | null {
           {data.includes.join(', ')}
         </ListDetailsItem>
       ) : null}
+
       <ListDetailsItem label='Filters'>
-        <BlockCode json={data.filters} />
+        {data.filters != null ? <BlockCode json={data.filters} /> : '-'}
       </ListDetailsItem>
       <ListDetailsItem label='Dry Data'>
         {data.dry_data === true ? 'true' : 'false'}

@@ -1,6 +1,6 @@
 import { getUiStatus, listHasProgressingItems } from './utils'
-import { Export } from '@commercelayer/sdk'
-import { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
+import { type Export } from '@commercelayer/sdk'
+import { type ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
 
 // getUiStatus
 describe('getUiStatus', () => {

@@ -1,4 +1,4 @@
-import { Export } from '@commercelayer/sdk'
+import { type Export } from '@commercelayer/sdk'
 import { useExportDetailsContext } from './Provider'
 import { Report } from '@commercelayer/app-elements'
 import { ExportCount } from './ExportCount'

@@ -1,6 +1,6 @@
-import { Export } from '@commercelayer/sdk'
-import { ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
-import { ListExportContextState } from 'App'
+import { type Export } from '@commercelayer/sdk'
+import { type ListResponse } from '@commercelayer/sdk/lib/cjs/resource'
+import { type ListExportContextState } from 'App'
 import { listHasProgressingItems } from './utils'
 
 type Action =

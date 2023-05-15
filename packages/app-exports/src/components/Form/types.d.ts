@@ -1,5 +1,5 @@
 declare module 'AppForm' {
-  import { SelectValue } from '@commercelayer/app-elements'
+  import { type SelectValue } from '@commercelayer/app-elements'
 
   type ExportFormat = 'csv' | 'json'
 

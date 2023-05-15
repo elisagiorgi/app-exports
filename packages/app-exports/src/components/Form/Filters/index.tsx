@@ -1,8 +1,8 @@
-import { AllowedResourceType } from 'App'
+import { type AllowedResourceType } from 'App'
 import { Orders } from './Orders'
 import { Skus } from './Skus'
 import { Prices } from './Prices'
-import { AllFilters } from 'AppForm'
+import { type AllFilters } from 'AppForm'
 import { StockItems } from './StockItems'
 
 interface Props {

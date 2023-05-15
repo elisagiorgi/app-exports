@@ -1,20 +1,17 @@
-import { appRoutes } from '#data/routes'
-import { Link, useLocation } from 'wouter'
+import { Item } from '#components/List/Item'
 import { ListExportProvider } from '#components/List/Provider'
-import { getUiStatus } from '#components/List/utils'
-import { showResourceNiceName } from '#data/resources'
+import { appRoutes } from '#data/routes'
 import {
   A,
   Button,
-  PageSkeleton,
-  PageLayout,
-  List,
-  ListItemTask,
   EmptyState,
-  useTokenProvider,
-  useCoreSdkProvider
+  List,
+  PageLayout,
+  PageSkeleton,
+  useCoreSdkProvider,
+  useTokenProvider
 } from '@commercelayer/app-elements'
-import { DescriptionLine } from '#components/List/ItemDescriptionLine'
+import { Link, useLocation } from 'wouter'
 
 function ListPage(): JSX.Element {
   const {
@@ -54,7 +51,7 @@ function ListPage(): JSX.Element {
       }}
     >
       <ListExportProvider sdkClient={sdkClient} pageSize={25}>
-        {({ state, changePage, deleteExport }) => {
+        {({ state, changePage }) => {
           const { isLoading, currentPage, list } = state
 
           if (isLoading) {
@@ -110,25 +107,7 @@ function ListPage(): JSX.Element {
               }}
             >
               {list.map((job) => {
-                const canDelete =
-                  (job.status === 'pending' || job.status === 'in_progress') &&
-                  canUser('destroy', 'exports')
-                const statusUi = getUiStatus(job.status)
-                return (
-                  <ListItemTask
-                    key={job.id}
-                    status={statusUi}
-                    onClick={() => {
-                      setLocation(appRoutes.details.makePath(job.id))
-                    }}
-                    progressPercentage={statusUi === 'progress' ? 0 : undefined}
-                    title={showResourceNiceName(job.resource_type)}
-                    onCancelRequest={
-                      canDelete ? () => deleteExport(job.id) : undefined
-                    }
-                    description={<DescriptionLine job={job} />}
-                  />
-                )
+                return <Item key={job.id} job={job} />
               })}
             </List>
           )

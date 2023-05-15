@@ -1,14 +1,15 @@
-import { appRoutes } from '#data/routes'
-import { useLocation, Link } from 'wouter'
 import { availableResources, showResourceNiceName } from '#data/resources'
-
+import { appRoutes } from '#data/routes'
 import {
+  Icon,
   List,
   ListItem,
   PageLayout,
   Spacer,
+  Text,
   useTokenProvider
 } from '@commercelayer/app-elements'
+import { Link, useLocation } from 'wouter'
 
 export function ResourceSelectorPage(): JSX.Element {
   const {
@@ -28,7 +29,10 @@ export function ResourceSelectorPage(): JSX.Element {
         <List>
           {availableResources.sort().map((resource) => (
             <Link key={resource} href={appRoutes.newExport.makePath(resource)}>
-              <ListItem label={showResourceNiceName(resource)} />
+              <ListItem tag='a'>
+                <Text weight='semibold'>{showResourceNiceName(resource)}</Text>
+                <Icon name='caretRight' />
+              </ListItem>
             </Link>
           ))}
         </List>

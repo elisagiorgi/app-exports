@@ -1,8 +1,8 @@
-import { CommerceLayerClient, Export } from '@commercelayer/sdk'
-import { ExportDetailsContextValue } from 'App'
+import { type CommerceLayerClient, type Export } from '@commercelayer/sdk'
+import { type ExportDetailsContextValue } from 'App'
 import {
   createContext,
-  ReactNode,
+  type ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -92,7 +92,9 @@ export function ExportDetailsProvider({
 
   const value: ExportDetailsContextValue = {
     state,
-    refetch: async () => await fetchJob({ handleLoadingState: false }),
+    refetch: async () => {
+      await fetchJob({ handleLoadingState: false })
+    },
     deleteExport
   }
 

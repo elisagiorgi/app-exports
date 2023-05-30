@@ -24,11 +24,11 @@ function App(): JSX.Element {
     <ErrorBoundary hasContainer>
       <TokenProvider
         appSlug='exports'
-        kind='webapp'
+        kind='exports'
         domain={window.clAppConfig.domain}
         reauthenticateOnInvalidAuth={!isDev}
         loadingElement={<PageSkeleton />}
-        devMode={isDev}
+        devMode
       >
         <CoreSdkProvider>
           <Router base={basePath}>

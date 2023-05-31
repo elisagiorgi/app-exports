@@ -78,7 +78,9 @@ const DetailsPage = (): JSX.Element | null => {
               setLocation(appRoutes.list.makePath())
             }}
           >
-            <ExportReport />
+            <Spacer bottom='12'>
+              <ExportReport />
+            </Spacer>
 
             <Spacer bottom='12'>
               <ExportDetails />

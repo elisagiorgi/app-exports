@@ -1,6 +1,6 @@
 import { Badge } from '@commercelayer/app-elements'
-import { BadgeVariant } from '@commercelayer/app-elements/dist/ui/atoms/Badge'
-import { Export } from '@commercelayer/sdk'
+import { type BadgeVariant } from '@commercelayer/app-elements/dist/ui/atoms/Badge'
+import { type Export } from '@commercelayer/sdk'
 
 interface Props {
   job: Export

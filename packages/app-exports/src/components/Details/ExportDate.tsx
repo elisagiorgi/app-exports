@@ -17,21 +17,22 @@ export function ExportDate({
     state: { data }
   } = useExportDetailsContext()
 
-  const {
-    settings: { timezone }
-  } = useTokenProvider()
+  const { user } = useTokenProvider()
 
   if (data == null) {
     return null
   }
+
+  const dateAt = data[atType]
   return (
     <span {...props}>
       {prefixText}{' '}
-      {formatDate({
-        isoDate: data[atType],
-        includeTime,
-        timezone
-      })}
+      {dateAt != null &&
+        formatDate({
+          isoDate: dateAt,
+          format: includeTime === true ? 'full' : 'date',
+          timezone: user?.timezone
+        })}
     </span>
   )
 }

@@ -1,4 +1,4 @@
-import { AllowedResourceType } from 'App'
+import { type AllowedResourceType } from 'App'
 import {
   isResourceWithRelationship,
   getRelationshipsByResourceType
@@ -29,6 +29,7 @@ export function RelationshipSelector({
       isMulti
       hint={{ text: 'List of relationships to be included in the export.' }}
       label='Include'
+      pathToValue='value'
     />
   )
 }

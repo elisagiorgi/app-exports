@@ -1,29 +1,30 @@
-import { useState } from 'react'
-import { ApiError } from 'App'
-import {
-  useTokenProvider,
-  PageSkeleton,
-  PageLayout,
-  PageError,
-  Spacer,
-  Button,
-  EmptyState,
-  useCoreSdkProvider,
-  InputFeedback
-} from '@commercelayer/app-elements'
-import { useLocation, useRoute, Link } from 'wouter'
+import { Form } from '#components/Form'
+import { adaptFormFiltersToSdk } from '#components/Form/Filters/utils'
+import { validateRecordsCount } from '#components/Form/validateRecordsCount'
 import { isAvailableResource, showResourceNiceName } from '#data/resources'
 import { appRoutes } from '#data/routes'
-import { Form } from '#components/Form'
-import { validateRecordsCount } from '#components/Form/validateRecordsCount'
 import { parseApiError } from '#utils/apiErrors'
-import { ExportFormValues } from 'AppForm'
-import { adaptFormFiltersToSdk } from '#components/Form/Filters/utils'
+import {
+  Button,
+  EmptyState,
+  InputFeedback,
+  PageError,
+  PageLayout,
+  PageSkeleton,
+  Spacer,
+  useCoreSdkProvider,
+  useTokenProvider
+} from '@commercelayer/app-elements'
+import { type ApiError } from 'App'
+import { type ExportFormValues } from 'AppForm'
+import { useState } from 'react'
+import { Link, useLocation, useRoute } from 'wouter'
 
 const NewExportPage = (): JSX.Element | null => {
   const {
     canUser,
-    settings: { mode, timezone }
+    settings: { mode },
+    user
   } = useTokenProvider()
   const { sdkClient } = useCoreSdkProvider()
 
@@ -68,7 +69,7 @@ const NewExportPage = (): JSX.Element | null => {
     setIsLoading(true)
 
     try {
-      const filters = adaptFormFiltersToSdk(values.filters, timezone)
+      const filters = adaptFormFiltersToSdk(values.filters, user?.timezone)
       await validateRecordsCount({
         sdkClient,
         resourceType,
@@ -77,7 +78,7 @@ const NewExportPage = (): JSX.Element | null => {
       await sdkClient.exports.create({
         resource_type: resourceType,
         dry_data: values.dryData,
-        includes: values.includes.map(({ value }) => String(value)),
+        includes: values.includes,
         format: values.format,
         filters
       })

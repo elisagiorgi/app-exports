@@ -1,6 +1,4 @@
 declare module 'AppForm' {
-  import { SelectValue } from '@commercelayer/app-elements'
-
   type ExportFormat = 'csv' | 'json'
 
   type FilterValue = string | number | Array<string | number> | null | boolean
@@ -41,7 +39,7 @@ declare module 'AppForm' {
 
   interface ExportFormValues {
     dryData: boolean
-    includes: SelectValue[]
+    includes: string[]
     format: ExportFormat
     filters?: AllFilters
   }

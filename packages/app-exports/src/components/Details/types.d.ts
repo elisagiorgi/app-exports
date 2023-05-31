@@ -1,4 +1,4 @@
-import { Export } from '@commercelayer/sdk'
+import { type Export } from '@commercelayer/sdk'
 
 declare module 'App' {
   export interface ExportDetailsContextValue {

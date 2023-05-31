@@ -1,8 +1,8 @@
-import { SearchParams } from '#components/Form/ResourceFinder/utils'
+import { type SearchParams } from '#components/Form/ResourceFinder/utils'
 import { InputSelect, Label } from '@commercelayer/app-elements'
 import {
-  PossibleSelectValue,
-  SelectValue
+  type PossibleSelectValue,
+  type SelectValue
 } from '@commercelayer/app-elements/dist/ui/forms/InputSelect'
 import { useEffect, useState } from 'react'
 import { fetchInitialResources, fetchResourcesByHint } from './utils'

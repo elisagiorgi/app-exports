@@ -1,14 +1,12 @@
 import { formatDate, useTokenProvider } from '@commercelayer/app-elements'
-import { Export } from '@commercelayer/sdk'
+import { type Export } from '@commercelayer/sdk'
 
 interface Props {
   job: Export
 }
 
 export function DescriptionLine({ job }: Props): JSX.Element {
-  const {
-    settings: { timezone }
-  } = useTokenProvider()
+  const { user } = useTokenProvider()
 
   return (
     <>
@@ -19,11 +17,16 @@ export function DescriptionLine({ job }: Props): JSX.Element {
       ) : job.interrupted_at != null ? (
         <div>
           Export failed on{' '}
-          {formatDate({ isoDate: job.interrupted_at, timezone })}
+          {formatDate({
+            isoDate: job.interrupted_at,
+            timezone: user?.timezone
+          })}
         </div>
       ) : job.status === 'completed' ? (
         <div>
-          Exported on {formatDate({ isoDate: job.completed_at, timezone })}
+          Exported on{' '}
+          {job.completed_at != null &&
+            formatDate({ isoDate: job.completed_at, timezone: user?.timezone })}
         </div>
       ) : (
         '-'

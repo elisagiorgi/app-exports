@@ -1,6 +1,9 @@
-import { SelectValue } from '@commercelayer/app-elements/dist/ui/forms/InputSelect'
-import { CommerceLayerClient } from '@commercelayer/sdk'
-import { ListResponse, Resource } from '@commercelayer/sdk/lib/cjs/resource'
+import { type SelectValue } from '@commercelayer/app-elements/dist/ui/forms/InputSelect'
+import { type CommerceLayerClient } from '@commercelayer/sdk'
+import {
+  type ListResponse,
+  type Resource
+} from '@commercelayer/sdk/lib/cjs/resource'
 
 export type SearchableResource =
   | 'markets'

@@ -4,7 +4,7 @@ import {
   flatSelectValues,
   useCoreSdkProvider
 } from '@commercelayer/app-elements'
-import { FilterValue, PricesFilters, PricesField } from 'AppForm'
+import { type FilterValue, type PricesFilters, type PricesField } from 'AppForm'
 import { useEffect, useState } from 'react'
 
 interface Props {

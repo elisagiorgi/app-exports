@@ -6,7 +6,7 @@ import {
   flatSelectValues,
   useCoreSdkProvider
 } from '@commercelayer/app-elements'
-import { FilterValue, SkusField, SkusFilters } from 'AppForm'
+import { type FilterValue, type SkusField, type SkusFilters } from 'AppForm'
 import { useEffect, useState } from 'react'
 
 interface Props {

@@ -14,11 +14,11 @@ importers:
   packages/app-exports:
     dependencies:
       '@commercelayer/app-elements':
-        specifier: ^0.0.36
-        version: 0.0.36(@commercelayer/sdk@5.1.1)(typescript@5.0.4)
+        specifier: ^0.0.44
+        version: 0.0.44(@commercelayer/sdk@5.1.1)(typescript@5.0.4)(wouter@2.10.1)
       '@commercelayer/app-elements-hook-form':
-        specifier: ^0.0.36
-        version: 0.0.36(@commercelayer/app-elements@0.0.36)(react-hook-form@7.43.9)
+        specifier: ^0.0.44
+        version: 0.0.44(@commercelayer/app-elements@0.0.44)(@commercelayer/sdk@5.1.1)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0)
       '@commercelayer/eslint-config-ts-react':
         specifier: ^1.0.0
         version: 1.0.0(eslint@8.40.0)(react@18.2.0)(typescript@5.0.4)
@@ -364,22 +364,31 @@ packages:
     dev: true
     optional: true
 
-  /@commercelayer/app-elements-hook-form@0.0.36(@commercelayer/app-elements@0.0.36)(react-hook-form@7.43.9):
-    resolution: {integrity: sha512-jXfN0rBX+rbO/N2BpXlPnxNZLUOgkSPw2H1qJBDZ116u4CNeGMDCNBYV75MDjVwo5hAgSJtO1JKZP2Wf1FSxSA==}
+  /@commercelayer/app-elements-hook-form@0.0.44(@commercelayer/app-elements@0.0.44)(@commercelayer/sdk@5.1.1)(query-string@8.1.0)(react-dom@18.2.0)(react-hook-form@7.43.9)(react@18.2.0):
+    resolution: {integrity: sha512-taqr5eEEnXFRvNJYuUYlBih8pMYiA83nyPnr5YhaLL38oXs2pL6GF8999cWR+BGHIARsqEgxI5GfJf4qHgbFXg==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
-      '@commercelayer/app-elements': 0.0.36
+      '@commercelayer/app-elements': 0.0.44
+      '@commercelayer/sdk': ^5.x
+      query-string: ^8.1.x
+      react: ^18.2.x
+      react-dom: ^18.2.x
       react-hook-form: ^7.43.x
     dependencies:
-      '@commercelayer/app-elements': 0.0.36(@commercelayer/sdk@5.1.1)(typescript@5.0.4)
+      '@commercelayer/app-elements': 0.0.44(@commercelayer/sdk@5.1.1)(typescript@5.0.4)(wouter@2.10.1)
+      '@commercelayer/sdk': 5.1.1
+      query-string: 8.1.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-hook-form: 7.43.9(react@18.2.0)
     dev: false
 
-  /@commercelayer/app-elements@0.0.36(@commercelayer/sdk@5.1.1)(typescript@5.0.4):
-    resolution: {integrity: sha512-Z1E41Hxzjvq1mHuMDNEy/j5mFWt8TfUn46HAG6h2SKFMWBXDhfDHVZA6E7sqnw6Lt2olfIrCyqdpGKDbVpPZ7w==}
+  /@commercelayer/app-elements@0.0.44(@commercelayer/sdk@5.1.1)(typescript@5.0.4)(wouter@2.10.1):
+    resolution: {integrity: sha512-4tUcsvWsLlLqDxOZZ1yCderr5cJyTgb4ZO0G5F304GxFvFvabV3ws9adB39ux7vm31CCc7RyyN5wutLftPmZHA==}
     engines: {node: '>=18', pnpm: '>=7'}
     peerDependencies:
       '@commercelayer/sdk': ^5.x
+      wouter: ^2.x
     dependencies:
       '@commercelayer/sdk': 5.1.1
       '@types/lodash': 4.14.194
@@ -397,6 +406,8 @@ packages:
       swr: 2.1.5(react@18.2.0)
       ts-invariant: 0.10.3
       type-fest: 3.10.0(typescript@5.0.4)
+      wouter: 2.10.1(react@18.2.0)
+      zod: 3.21.4
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -3101,6 +3112,11 @@ packages:
     resolution: {integrity: sha512-VBBaLc1MgL5XpzgIP7ny5Z6Nx3UrRkIViUkPUdtl9aya5amy3De1gsUUSB1g3+3sExYNjCAsAznmukyxCb1GRA==}
     dev: false
 
+  /decode-uri-component@0.4.1:
+    resolution: {integrity: sha512-+8VxcR21HhTy8nOt6jf20w0c9CADrw1O8d+VZ/YzzCt4bJ3uBjw+D1q2osAB8RnpwwaeYBxy0HyKQxD5JBMuuQ==}
+    engines: {node: '>=14.16'}
+    dev: false
+
   /decompress-response@6.0.0:
     resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
     engines: {node: '>=10'}
@@ -3948,6 +3964,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
+
+  /filter-obj@5.1.0:
+    resolution: {integrity: sha512-qWeTREPoT7I0bifpPUXtxkZJ1XJzxWtfoWWkdVGqa+eCr3SHW/Ocp89o8vLvbUuQnadybJpjOKu4V+RwO6sGng==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /find-root@1.1.0:
     resolution: {integrity: sha512-NKfW6bec6GfKc0SGx1e07QZY9PE99u0Bft/0rzSD5k3sO/vwkVUpDUKVm5Gpp5Ue3YfShPFTX2070tDs5kB9Ng==}
@@ -6921,6 +6942,15 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     dev: true
 
+  /query-string@8.1.0:
+    resolution: {integrity: sha512-BFQeWxJOZxZGix7y+SByG3F36dA0AbTy9o6pSmKFcFz7DAj0re9Frkty3saBn3nHo3D0oZJ/+rx3r8H8r8Jbpw==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      decode-uri-component: 0.4.1
+      filter-obj: 5.1.0
+      split-on-first: 3.0.0
+    dev: false
+
   /querystringify@2.2.0:
     resolution: {integrity: sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ==}
     dev: false
@@ -7616,6 +7646,11 @@ packages:
   /spdx-license-ids@3.0.12:
     resolution: {integrity: sha512-rr+VVSXtRhO4OHbXUiAF7xW3Bo9DuuF6C5jH+q/x15j2jniycgKbxU09Hr0WqlSLUs4i4ltHGXqTe7VHclYWyA==}
     dev: true
+
+  /split-on-first@3.0.0:
+    resolution: {integrity: sha512-qxQJTx2ryR0Dw0ITYyekNQWpz6f8dGd7vffGNflQQ3Iqj9NJ6qiZ7ELpZsJ/QBhIVAiDfXdag3+Gp8RvWa62AA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /split2@3.2.2:
     resolution: {integrity: sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==}
@@ -8891,4 +8926,8 @@ packages:
   /yocto-queue@1.0.0:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
+    dev: false
+
+  /zod@3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false

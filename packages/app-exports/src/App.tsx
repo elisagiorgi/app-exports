@@ -6,7 +6,8 @@ import {
   PageSkeleton,
   TokenProvider,
   ErrorBoundary,
-  CoreSdkProvider
+  CoreSdkProvider,
+  MetaTags
 } from '@commercelayer/app-elements'
 import { ResourceSelectorPage } from './pages/ResourceSelectorPage'
 import DetailsPage from './pages/DetailsPage'
@@ -30,6 +31,7 @@ function App(): JSX.Element {
         loadingElement={<PageSkeleton />}
         devMode={isDev}
       >
+        <MetaTags />
         <CoreSdkProvider>
           <Router base={basePath}>
             <Switch>

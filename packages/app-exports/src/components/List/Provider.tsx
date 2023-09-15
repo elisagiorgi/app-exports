@@ -40,7 +40,7 @@ export function ListExportProvider({
   sdkClient
 }: ListExportProviderProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const intervalId = useRef<NodeJS.Timer | null>(null)
+  const intervalId = useRef<number | null>(null)
 
   const changePage = useCallback((page: number) => {
     dispatch({ type: 'changePage', payload: page })
@@ -80,13 +80,13 @@ export function ListExportProvider({
         return
       }
       // start polling
-      intervalId.current = setInterval(() => {
+      intervalId.current = window.setInterval(() => {
         void fetchList()
       }, POLLING_INTERVAL)
 
       return () => {
         if (intervalId.current != null) {
-          clearInterval(intervalId.current)
+          window.clearInterval(intervalId.current)
         }
       }
     },

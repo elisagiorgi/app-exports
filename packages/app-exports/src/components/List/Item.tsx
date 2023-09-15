@@ -22,9 +22,7 @@ export function Item({ job }: Props): JSX.Element {
   const { canUser } = useTokenProvider()
   const { deleteExport } = useListContext()
 
-  const canDelete =
-    (job.status === 'pending' || job.status === 'in_progress') &&
-    canUser('destroy', 'exports')
+  const canDelete = job.status === 'pending' && canUser('destroy', 'exports')
 
   return (
     <Link href={appRoutes.details.makePath(job.id)}>
@@ -39,6 +37,7 @@ export function Item({ job }: Props): JSX.Element {
         </div>
         {canDelete ? (
           <Button
+            type='button'
             variant='danger'
             onClick={() => {
               deleteExport(job.id)

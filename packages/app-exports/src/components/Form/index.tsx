@@ -1,17 +1,22 @@
 import { type AllowedResourceType } from 'App'
 import { type ExportFormValues } from 'AppForm'
 import { showResourceNiceName } from '#data/resources'
-import { Label, Spacer, Button, Tabs, Tab } from '@commercelayer/app-elements'
+import {
+  Spacer,
+  Button,
+  Tabs,
+  Tab,
+  ListItem,
+  HookedInputSimpleSelect,
+  HookedInputSwitch,
+  Section,
+  HookedForm
+} from '@commercelayer/app-elements'
 import { RelationshipSelector } from './RelationshipSelector'
 import { Filters } from '#components/Form/Filters'
 import { resourcesWithFilters } from '#components/Form/Filters/index'
 import { InputCode } from '#components/Form/Filters/InputCode'
 import { Controller, useForm } from 'react-hook-form'
-import {
-  InputToggleBox,
-  InputToggleListBox,
-  Form as FormProvider
-} from '@commercelayer/app-elements-hook-form'
 
 interface Props {
   resourceType: AllowedResourceType
@@ -31,7 +36,7 @@ export function Form({
   })
 
   return (
-    <FormProvider {...methods} onSubmit={onSubmit}>
+    <HookedForm {...methods} onSubmit={onSubmit}>
       <Spacer bottom='6'>
         <Tabs keepAlive>
           {resourcesWithFilters.includes(resourceType) ? (
@@ -66,28 +71,34 @@ export function Form({
       </Spacer>
 
       <Spacer bottom='14'>
-        <Label gap htmlFor='toggle-cleanup'>
-          More options
-        </Label>
-        <div>
-          <InputToggleBox
-            id='toggle-cleanup'
-            label='Dry data to make importable'
-            name='dryData'
-          />
-          <InputToggleListBox
-            id='format'
-            label='Export format'
-            options={[
-              { label: 'JSON', value: 'json' },
-              {
-                label: 'CSV',
-                value: 'csv'
-              }
-            ]}
-            name='format'
-          />
-        </div>
+        <Section title='More options' titleSize='small'>
+          <ListItem tag='div'>
+            <HookedInputSwitch
+              id='toggle-cleanup'
+              inline
+              label='Dry data to make importable'
+              name='dryData'
+            />
+          </ListItem>
+          <ListItem tag='div'>
+            <HookedInputSimpleSelect
+              id='format'
+              label='Export format'
+              name='format'
+              options={[
+                { label: 'JSON', value: 'json' },
+                {
+                  label: 'CSV',
+                  value: 'csv'
+                }
+              ]}
+              inline
+              hint={{
+                text: 'Select a format'
+              }}
+            />
+          </ListItem>
+        </Section>
       </Spacer>
 
       <Button variant='primary' type='submit' disabled={isLoading}>
@@ -95,6 +106,6 @@ export function Form({
           ? 'Exporting...'
           : `Export ${showResourceNiceName(resourceType).toLowerCase()}`}
       </Button>
-    </FormProvider>
+    </HookedForm>
   )
 }

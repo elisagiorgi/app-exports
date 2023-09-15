@@ -2,7 +2,6 @@ import { Item } from '#components/List/Item'
 import { ListExportProvider } from '#components/List/Provider'
 import { appRoutes } from '#data/routes'
 import {
-  A,
   Button,
   EmptyState,
   List,
@@ -94,7 +93,7 @@ function ListPage(): JSX.Element {
               actionButton={
                 canUser('create', 'exports') ? (
                   <Link href={appRoutes.selectResource.makePath()}>
-                    <A>New export</A>
+                    <a>New export</a>
                   </Link>
                 ) : undefined
               }

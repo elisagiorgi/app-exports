@@ -30,7 +30,7 @@ export function ExportDetailsProvider({
   children
 }: ExportDetailsProviderProps): JSX.Element {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const intervalId = useRef<NodeJS.Timer | null>(null)
+  const intervalId = useRef<number | null>(null)
 
   const fetchJob = useCallback(
     async ({ handleLoadingState }: { handleLoadingState: boolean }) => {
@@ -77,13 +77,13 @@ export function ExportDetailsProvider({
       if (!state.isPolling) {
         return
       }
-      intervalId.current = setInterval(() => {
+      intervalId.current = window.setInterval(() => {
         void fetchJob({ handleLoadingState: false })
       }, POLLING_INTERVAL)
 
       return () => {
         if (intervalId.current != null) {
-          clearInterval(intervalId.current)
+          window.clearInterval(intervalId.current)
         }
       }
     },

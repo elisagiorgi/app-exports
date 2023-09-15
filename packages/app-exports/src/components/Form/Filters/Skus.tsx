@@ -1,7 +1,7 @@
 import { ResourceFinder } from '#components/Form/ResourceFinder'
 import {
   InputDateRange,
-  RadioButtons,
+  InputToggleButton,
   Spacer,
   flatSelectValues,
   useCoreSdkProvider
@@ -68,9 +68,9 @@ export function Skus({ onChange }: Props): JSX.Element | null {
       </Spacer>
 
       <Spacer bottom='6'>
-        <RadioButtons
-          id='product-type'
+        <InputToggleButton
           label='Product Type'
+          mode='single'
           options={[
             {
               value: 'true',

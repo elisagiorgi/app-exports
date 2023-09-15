@@ -47,7 +47,6 @@ function getStatusLabel(data: Export): string {
 
 function getSourceFileUrl(job?: Export): string | undefined {
   if (
-    job == null ||
     job?.attachment_url == null ||
     job?.records_count == null ||
     job.records_count === 0

@@ -1,11 +1,9 @@
 import { type SearchParams } from '#components/Form/ResourceFinder/utils'
 import { InputSelect, Label } from '@commercelayer/app-elements'
-import {
-  type PossibleSelectValue,
-  type SelectValue
-} from '@commercelayer/app-elements/dist/ui/forms/InputSelect'
+import { type SelectValue } from '@commercelayer/app-elements/dist/ui/forms/InputSelect'
 import { useEffect, useState } from 'react'
 import { fetchInitialResources, fetchResourcesByHint } from './utils'
+import { type PossibleSelectValue } from '@commercelayer/app-elements/dist/ui/forms/InputSelect/InputSelect'
 
 interface Props extends SearchParams {
   /**
@@ -44,7 +42,7 @@ export function ResourceFinder({
       return
     }
     setIsLoading(true)
-    fetchInitialResources({
+    void fetchInitialResources({
       sdkClient,
       resourceType,
       fields,

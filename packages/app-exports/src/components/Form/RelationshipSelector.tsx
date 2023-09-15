@@ -3,7 +3,7 @@ import {
   isResourceWithRelationship,
   getRelationshipsByResourceType
 } from '#data/relationships'
-import { InputSelect } from '@commercelayer/app-elements-hook-form'
+import { HookedInputSelect } from '@commercelayer/app-elements'
 
 interface Props {
   resourceType: AllowedResourceType
@@ -19,7 +19,7 @@ export function RelationshipSelector({
   const relationships = getRelationshipsByResourceType(resourceType)
 
   return (
-    <InputSelect
+    <HookedInputSelect
       initialValues={relationships.map((r) => ({
         value: r,
         label: r

@@ -76,14 +76,20 @@ export function Form({
             <HookedInputSwitch
               id='toggle-cleanup'
               inline
-              label='Dry data to make importable'
+              label='Dry data'
+              hint={{
+                text: 'Enable this flag to make the data importable.'
+              }}
               name='dryData'
             />
           </ListItem>
           <ListItem tag='div'>
             <HookedInputSimpleSelect
               id='format'
-              label='Export format'
+              label='Format'
+              hint={{
+                text: 'Select the format of the exported data.'
+              }}
               name='format'
               options={[
                 { label: 'JSON', value: 'json' },
@@ -93,9 +99,6 @@ export function Form({
                 }
               ]}
               inline
-              hint={{
-                text: 'Select a format'
-              }}
             />
           </ListItem>
         </Section>

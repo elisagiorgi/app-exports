@@ -1,1 +1,1 @@
-./packages/app-exports/README.md
+./packages/app/README.md

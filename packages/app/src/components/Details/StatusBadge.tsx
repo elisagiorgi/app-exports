@@ -1,5 +1,4 @@
-import { Badge } from '@commercelayer/app-elements'
-import { type BadgeVariant } from '@commercelayer/app-elements/dist/ui/atoms/Badge'
+import { Badge, type BadgeProps } from '@commercelayer/app-elements'
 import { type Export } from '@commercelayer/sdk'
 
 interface Props {
@@ -7,15 +6,16 @@ interface Props {
 }
 
 export function StatusBadge({ job }: Props): JSX.Element {
+  const { variant, label } = getUiStatusVariant(job.status)
   return (
     <div>
-      <Badge {...getUiStatusVariant(job.status)} />
+      <Badge variant={variant}>{label}</Badge>
     </div>
   )
 }
 
 function getUiStatusVariant(apiStatus?: string): {
-  variant: BadgeVariant
+  variant: BadgeProps['variant']
   label: string
 } {
   if (apiStatus === 'in_progress') {

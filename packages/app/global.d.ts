@@ -8,6 +8,10 @@ declare global {
        * It must be set as `commercelayer.io`.
        */
       domain: string
+      /**
+       * Enable Google Tag Manager for the provided GTM ID.
+       */
+      gtmId?: string
     }
   }
 }

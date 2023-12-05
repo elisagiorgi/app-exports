@@ -30,7 +30,7 @@ const DetailsPage = (): JSX.Element | null => {
   if (exportId == null || !canUser('read', 'exports')) {
     return (
       <PageLayout
-        title='Exports'
+        title='Exports Eli test'
         onGoBack={() => {
           setLocation(appRoutes.list.makePath())
         }}
